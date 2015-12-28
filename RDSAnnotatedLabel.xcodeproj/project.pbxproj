@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F06D8A2A1C316BC200C81AD5 /* RDSAnnotatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06D8A291C316BC200C81AD5 /* RDSAnnotatedLabel.swift */; };
+		F06D8A341C316FDD00C81AD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06D8A331C316FDD00C81AD5 /* AppDelegate.swift */; };
+		F06D8A361C316FDD00C81AD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06D8A351C316FDD00C81AD5 /* ViewController.swift */; };
+		F06D8A391C316FDD00C81AD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F06D8A371C316FDD00C81AD5 /* Main.storyboard */; };
+		F06D8A3B1C316FDD00C81AD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F06D8A3A1C316FDD00C81AD5 /* Assets.xcassets */; };
+		F06D8A3E1C316FDD00C81AD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F06D8A3C1C316FDD00C81AD5 /* LaunchScreen.storyboard */; };
+		F06D8A5F1C31707500C81AD5 /* RDSAnnotatedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C6E8B41C2ED1AC00AAE79C /* RDSAnnotatedLabel.framework */; };
 		F0C6E8B81C2ED1AC00AAE79C /* RDSAnnotatedLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = F0C6E8B71C2ED1AC00AAE79C /* RDSAnnotatedLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F0C6E8BF1C2ED1AC00AAE79C /* RDSAnnotatedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0C6E8B41C2ED1AC00AAE79C /* RDSAnnotatedLabel.framework */; };
 		F0C6E8C41C2ED1AC00AAE79C /* RDSAnnotatedLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C6E8C31C2ED1AC00AAE79C /* RDSAnnotatedLabelTests.swift */; };
@@ -23,6 +30,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F06D8A291C316BC200C81AD5 /* RDSAnnotatedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSAnnotatedLabel.swift; sourceTree = "<group>"; };
+		F06D8A311C316FDD00C81AD5 /* RDSAnnotatedLabelDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RDSAnnotatedLabelDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F06D8A331C316FDD00C81AD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F06D8A351C316FDD00C81AD5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F06D8A381C316FDD00C81AD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F06D8A3A1C316FDD00C81AD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F06D8A3D1C316FDD00C81AD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F06D8A3F1C316FDD00C81AD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0C6E8B41C2ED1AC00AAE79C /* RDSAnnotatedLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RDSAnnotatedLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0C6E8B71C2ED1AC00AAE79C /* RDSAnnotatedLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RDSAnnotatedLabel.h; sourceTree = "<group>"; };
 		F0C6E8B91C2ED1AC00AAE79C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -32,6 +47,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F06D8A2E1C316FDD00C81AD5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F06D8A5F1C31707500C81AD5 /* RDSAnnotatedLabel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F0C6E8B01C2ED1AC00AAE79C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,11 +73,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F06D8A321C316FDD00C81AD5 /* RDSAnnotatedLabelDemo */ = {
+			isa = PBXGroup;
+			children = (
+				F06D8A331C316FDD00C81AD5 /* AppDelegate.swift */,
+				F06D8A351C316FDD00C81AD5 /* ViewController.swift */,
+				F06D8A371C316FDD00C81AD5 /* Main.storyboard */,
+				F06D8A3A1C316FDD00C81AD5 /* Assets.xcassets */,
+				F06D8A3C1C316FDD00C81AD5 /* LaunchScreen.storyboard */,
+				F06D8A3F1C316FDD00C81AD5 /* Info.plist */,
+			);
+			path = RDSAnnotatedLabelDemo;
+			sourceTree = "<group>";
+		};
 		F0C6E8AA1C2ED1AC00AAE79C = {
 			isa = PBXGroup;
 			children = (
 				F0C6E8B61C2ED1AC00AAE79C /* RDSAnnotatedLabel */,
 				F0C6E8C21C2ED1AC00AAE79C /* RDSAnnotatedLabelTests */,
+				F06D8A321C316FDD00C81AD5 /* RDSAnnotatedLabelDemo */,
 				F0C6E8B51C2ED1AC00AAE79C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +101,7 @@
 			children = (
 				F0C6E8B41C2ED1AC00AAE79C /* RDSAnnotatedLabel.framework */,
 				F0C6E8BE1C2ED1AC00AAE79C /* RDSAnnotatedLabelTests.xctest */,
+				F06D8A311C316FDD00C81AD5 /* RDSAnnotatedLabelDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,6 +111,7 @@
 			children = (
 				F0C6E8B71C2ED1AC00AAE79C /* RDSAnnotatedLabel.h */,
 				F0C6E8B91C2ED1AC00AAE79C /* Info.plist */,
+				F06D8A291C316BC200C81AD5 /* RDSAnnotatedLabel.swift */,
 			);
 			path = RDSAnnotatedLabel;
 			sourceTree = "<group>";
@@ -100,6 +139,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		F06D8A301C316FDD00C81AD5 /* RDSAnnotatedLabelDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F06D8A561C316FDD00C81AD5 /* Build configuration list for PBXNativeTarget "RDSAnnotatedLabelDemo" */;
+			buildPhases = (
+				F06D8A2D1C316FDD00C81AD5 /* Sources */,
+				F06D8A2E1C316FDD00C81AD5 /* Frameworks */,
+				F06D8A2F1C316FDD00C81AD5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RDSAnnotatedLabelDemo;
+			productName = RDSAnnotatedLabelDemo;
+			productReference = F06D8A311C316FDD00C81AD5 /* RDSAnnotatedLabelDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 		F0C6E8B31C2ED1AC00AAE79C /* RDSAnnotatedLabel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0C6E8C81C2ED1AC00AAE79C /* Build configuration list for PBXNativeTarget "RDSAnnotatedLabel" */;
@@ -146,6 +202,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Radoslav Stankov";
 				TargetAttributes = {
+					F06D8A301C316FDD00C81AD5 = {
+						CreatedOnToolsVersion = 7.2;
+					};
 					F0C6E8B31C2ED1AC00AAE79C = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -160,6 +219,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = F0C6E8AA1C2ED1AC00AAE79C;
 			productRefGroup = F0C6E8B51C2ED1AC00AAE79C /* Products */;
@@ -168,11 +228,22 @@
 			targets = (
 				F0C6E8B31C2ED1AC00AAE79C /* RDSAnnotatedLabel */,
 				F0C6E8BD1C2ED1AC00AAE79C /* RDSAnnotatedLabelTests */,
+				F06D8A301C316FDD00C81AD5 /* RDSAnnotatedLabelDemo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F06D8A2F1C316FDD00C81AD5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F06D8A3E1C316FDD00C81AD5 /* LaunchScreen.storyboard in Resources */,
+				F06D8A3B1C316FDD00C81AD5 /* Assets.xcassets in Resources */,
+				F06D8A391C316FDD00C81AD5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F0C6E8B21C2ED1AC00AAE79C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -190,10 +261,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F06D8A2D1C316FDD00C81AD5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F06D8A361C316FDD00C81AD5 /* ViewController.swift in Sources */,
+				F06D8A341C316FDD00C81AD5 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F0C6E8AF1C2ED1AC00AAE79C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F06D8A2A1C316BC200C81AD5 /* RDSAnnotatedLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,7 +296,48 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		F06D8A371C316FDD00C81AD5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F06D8A381C316FDD00C81AD5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F06D8A3C1C316FDD00C81AD5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F06D8A3D1C316FDD00C81AD5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		F06D8A571C316FDD00C81AD5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RDSAnnotatedLabelDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rstankov.RDSAnnotatedLabelDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F06D8A581C316FDD00C81AD5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RDSAnnotatedLabelDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rstankov.RDSAnnotatedLabelDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		F0C6E8C61C2ED1AC00AAE79C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -308,6 +430,7 @@
 		F0C6E8C91C2ED1AC00AAE79C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -318,12 +441,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rstankov.RDSAnnotatedLabel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		F0C6E8CA1C2ED1AC00AAE79C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -360,6 +485,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F06D8A561C316FDD00C81AD5 /* Build configuration list for PBXNativeTarget "RDSAnnotatedLabelDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F06D8A571C316FDD00C81AD5 /* Debug */,
+				F06D8A581C316FDD00C81AD5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		F0C6E8AE1C2ED1AC00AAE79C /* Build configuration list for PBXProject "RDSAnnotatedLabel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -376,6 +509,7 @@
 				F0C6E8CA1C2ED1AC00AAE79C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F0C6E8CB1C2ED1AC00AAE79C /* Build configuration list for PBXNativeTarget "RDSAnnotatedLabelTests" */ = {
 			isa = XCConfigurationList;
@@ -384,6 +518,7 @@
 				F0C6E8CD1C2ED1AC00AAE79C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
