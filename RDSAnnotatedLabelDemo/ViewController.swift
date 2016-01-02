@@ -17,7 +17,8 @@ class ViewController: UIViewController {
         let label = RDSAnnotatedLabel()
 
         label.text = "Word \n #hash-1 \n #hash-2 \n @username \n http://example.com \n other text"
-        label.textColor = UIColor.blackColor()
+        label.textColor = UIColor.grayColor()
+        label.font = UIFont.boldSystemFontOfSize(15)
 
         let hashtagColor = UIColor.redColor()
         let hashtagSelectedColor = UIColor.purpleColor()

@@ -58,23 +58,32 @@ class RDSAnnotatedLabelTests: XCTestCase {
     // MARK: Public
 
     func testMatchingText() {
-        let label = RDSAnnotatedLabel()
+        let label = buildLabel()
 
+        label.addMatcher("test", color: UIColor.redColor())
         label.textColor = UIColor.blackColor()
         label.text = "this is test, here are some other words"
 
-        label.addMatcher("test", color: UIColor.redColor())
-
+        XCTAssertEqual(label.colorForText("this"), UIColor.blackColor())
         XCTAssertEqual(label.colorForText("test"), UIColor.redColor())
-        XCTAssertEqual(label.colorForText("test"), UIColor.blackColor())
+    }
+
+    private lazy var container = UIView()
+    private func buildLabel() -> RDSAnnotatedLabel {
+        let label = RDSAnnotatedLabel()
+
+        container.addSubview(label)
+
+        return label;
     }
 }
 
 extension RDSAnnotatedLabel {
     func colorForText(text:String) -> UIColor {
         var range = NSRange(location: 0, length: 0)
-        let index = (attributedText!.string as NSString).rangeOfString(text).location
+        let attr  = textStorage.attributedString
+        let index = (attr.string as NSString).rangeOfString(text).location
 
-        return attributedText?.attribute(NSForegroundColorAttributeName, atIndex: index, effectiveRange: &range) as! UIColor
+        return attr.attribute(NSForegroundColorAttributeName, atIndex: index, effectiveRange: &range) as! UIColor
     }
 }

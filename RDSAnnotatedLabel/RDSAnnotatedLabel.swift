@@ -68,16 +68,67 @@ func ==(lhs: RDSAnnotatedText, rhs: RDSAnnotatedText) -> Bool {
     return lhs.range.location == rhs.range.location && lhs.range.length != rhs.range.length
 }
 
+class RDSAnnotatedTextStorage {
+    private lazy var textStorage = NSTextStorage()
+    private lazy var textContainer = NSTextContainer()
+    private lazy var layoutManager = NSLayoutManager()
+
+    var attributedString : NSAttributedString {
+        get {
+            return textStorage
+        }
+
+        set(value) {
+            textStorage.setAttributedString(value)
+        }
+    }
+
+    init() {
+        textStorage.addLayoutManager(layoutManager)
+        layoutManager.addTextContainer(textContainer)
+        textContainer.lineFragmentPadding = 0
+    }
+
+    func drawTextInRect(rect: CGRect) {
+        textContainer.size = rect.size
+
+        let range = NSRange(location: 0, length: textStorage.length)
+        layoutManager.drawBackgroundForGlyphRange(range, atPoint: rect.origin)
+        layoutManager.drawGlyphsForGlyphRange(range, atPoint: rect.origin)
+    }
+
+    func setColor(color: UIColor, range:NSRange) {
+        textStorage.addAttributes([NSForegroundColorAttributeName:color], range: range)
+    }
+
+    func sizeThatFits(size: CGSize) -> CGSize {
+        let currentSize = textContainer.size
+
+        defer { textContainer.size = currentSize }
+
+        textContainer.size = size
+        return layoutManager.usedRectForTextContainer(textContainer).size
+    }
+
+    func indexForPoint(location: CGPoint) -> Int? {
+        if textStorage.length == 0 {
+            return nil
+        }
+
+        let boundingRect = layoutManager.boundingRectForGlyphRange(NSRange(location: 0, length: textStorage.length), inTextContainer: textContainer)
+        guard boundingRect.contains(location) else { return nil }
+
+        return layoutManager.glyphIndexForPoint(location, inTextContainer: textContainer)
+    }
+}
+
 public class RDSAnnotatedLabel: UILabel {
     override public var text: String? { didSet { updateUI() } }
     override public var attributedText: NSAttributedString? { didSet { updateUI() } }
     override public var font: UIFont! { didSet { updateUI() } }
     override public var textColor: UIColor! { didSet { updateUI() } }
 
-    private lazy var textAttributes = [String : AnyObject]()
-    private lazy var textStorage = NSTextStorage()
-    private lazy var textContainer = NSTextContainer()
-    private lazy var layoutManager = NSLayoutManager()
+    lazy var textStorage = RDSAnnotatedTextStorage()
 
     private lazy var items = [RDSAnnotatedText]()
     private lazy var matchers = [RDSAnnotatedMatcher]()
@@ -95,10 +146,6 @@ public class RDSAnnotatedLabel: UILabel {
     }
 
     private func commonInit() {
-        textStorage.addLayoutManager(layoutManager)
-        layoutManager.addTextContainer(textContainer)
-        textContainer.lineFragmentPadding = 0
-
         let touchRecognizer = UILongPressGestureRecognizer(target: self, action: "onTouch:")
         touchRecognizer.minimumPressDuration = 0.00001
         touchRecognizer.delegate = self
@@ -113,20 +160,11 @@ public class RDSAnnotatedLabel: UILabel {
     }
 
     public override func drawTextInRect(rect: CGRect) {
-        textContainer.size = rect.size
-
-        let range = NSRange(location: 0, length: textStorage.length)
-        layoutManager.drawBackgroundForGlyphRange(range, atPoint: rect.origin)
-        layoutManager.drawGlyphsForGlyphRange(range, atPoint: rect.origin)
+        textStorage.drawTextInRect(rect)
     }
 
     public override func sizeThatFits(size: CGSize) -> CGSize {
-        let currentSize = textContainer.size
-
-        defer { textContainer.size = currentSize }
-
-        textContainer.size = size
-        return layoutManager.usedRectForTextContainer(textContainer).size
+        return textStorage.sizeThatFits(size)
     }
 
     public override func didMoveToSuperview() {
@@ -156,12 +194,7 @@ public class RDSAnnotatedLabel: UILabel {
     }
 
     private func elementAtLocation(location: CGPoint) -> RDSAnnotatedText? {
-        guard textStorage.length > 0 else { return nil }
-
-        let boundingRect = layoutManager.boundingRectForGlyphRange(NSRange(location: 0, length: textStorage.length), inTextContainer: textContainer)
-        guard boundingRect.contains(location) else { return nil }
-
-        let index = layoutManager.glyphIndexForPoint(location, inTextContainer: textContainer)
+        guard let index = textStorage.indexForPoint(location) else { return nil }
 
         for element in items {
             if element.inRange(index) {
@@ -173,20 +206,21 @@ public class RDSAnnotatedLabel: UILabel {
     }
 
     private func updateUI() {
-        items.removeAll()
-
+        print("check")
         guard let _ = superview else { return }
 
-        applyTextAttributes()
-        applyitems()
-    }
+        print("render")
+        items.removeAll()
 
-    private func applyitems() {
-        let text = attributedText!.string as NSString
-        for word in text.componentsSeparatedByString(" ") {
+        let attributedString = attributedText ?? NSAttributedString(string: text ?? "", attributes: [NSFontAttributeName: font!, NSForegroundColorAttributeName: textColor])
+
+        textStorage.attributedString = attributedString
+
+        let string = attributedString.string as NSString
+        for word in string.componentsSeparatedByString(" ") {
             for matcher in matchers {
                 if (matcher.isMatching(word)) {
-                    let item = RDSAnnotatedText(range: text.rangeOfString(word), string: word, matcher: matcher)
+                    let item = RDSAnnotatedText(range: string.rangeOfString(word), string: word, matcher: matcher)
 
                     items.append(item)
                     styleItem(item)
@@ -195,32 +229,10 @@ public class RDSAnnotatedLabel: UILabel {
         }
     }
 
-    private func applyTextAttributes() {
-        let mutAttrString = NSMutableAttributedString(attributedString: attributedText!)
-
-        var range = NSRange(location: 0, length: 0)
-
-        textAttributes = mutAttrString.attributesAtIndex(0, effectiveRange: &range)
-
-        let paragraphStyle = textAttributes[NSParagraphStyleAttributeName] as? NSMutableParagraphStyle ?? NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = NSLineBreakMode.ByWordWrapping
-
-        textAttributes[NSParagraphStyleAttributeName] = paragraphStyle
-        textAttributes[NSFontAttributeName] = font!
-        textAttributes[NSForegroundColorAttributeName] = textColor
-
-        mutAttrString.setAttributes(textAttributes, range: range)
-
-        textStorage.setAttributedString(mutAttrString)
-    }
-
     private func styleItem(item: RDSAnnotatedText?, isSelected: Bool = false) {
         guard let item = item else { return }
 
-        var attributes = textAttributes;
-
-        attributes[NSForegroundColorAttributeName] = item.color(isSelected)
-        textStorage.addAttributes(attributes, range: item.range)
+        textStorage.setColor(item.color(isSelected), range: item.range)
     }
 }
 
