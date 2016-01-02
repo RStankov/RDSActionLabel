@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RDSAnnotatedTextStorage {
+class RDSAnnotatedTextRenderer {
     private lazy var textStorage = NSTextStorage()
     private lazy var textContainer = NSTextContainer()
     private lazy var layoutManager = NSLayoutManager()

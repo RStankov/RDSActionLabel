@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		F02CAD221C38433E00B09D9C /* RDSAnnotatedMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02CAD211C38433E00B09D9C /* RDSAnnotatedMatcher.swift */; };
 		F02CAD241C3843A500B09D9C /* RDSAnnotatedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02CAD231C3843A500B09D9C /* RDSAnnotatedText.swift */; };
-		F02CAD261C38446300B09D9C /* RDSAnnotatedTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02CAD251C38446300B09D9C /* RDSAnnotatedTextStorage.swift */; };
+		F02CAD261C38446300B09D9C /* RDSAnnotatedTextRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02CAD251C38446300B09D9C /* RDSAnnotatedTextRenderer.swift */; };
 		F02CAD291C3846E000B09D9C /* RDSAnnotatedMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02CAD271C38461500B09D9C /* RDSAnnotatedMatcherTests.swift */; };
 		F02CAD2B1C38471A00B09D9C /* RDSAnnotatedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02CAD2A1C38471A00B09D9C /* RDSAnnotatedText.swift */; };
 		F06D8A2A1C316BC200C81AD5 /* RDSAnnotatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06D8A291C316BC200C81AD5 /* RDSAnnotatedLabel.swift */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		F02CAD211C38433E00B09D9C /* RDSAnnotatedMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSAnnotatedMatcher.swift; sourceTree = "<group>"; };
 		F02CAD231C3843A500B09D9C /* RDSAnnotatedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSAnnotatedText.swift; sourceTree = "<group>"; };
-		F02CAD251C38446300B09D9C /* RDSAnnotatedTextStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSAnnotatedTextStorage.swift; sourceTree = "<group>"; };
+		F02CAD251C38446300B09D9C /* RDSAnnotatedTextRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSAnnotatedTextRenderer.swift; sourceTree = "<group>"; };
 		F02CAD271C38461500B09D9C /* RDSAnnotatedMatcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSAnnotatedMatcherTests.swift; sourceTree = "<group>"; };
 		F02CAD2A1C38471A00B09D9C /* RDSAnnotatedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSAnnotatedText.swift; sourceTree = "<group>"; };
 		F06D8A291C316BC200C81AD5 /* RDSAnnotatedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSAnnotatedLabel.swift; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 				F06D8A291C316BC200C81AD5 /* RDSAnnotatedLabel.swift */,
 				F02CAD211C38433E00B09D9C /* RDSAnnotatedMatcher.swift */,
 				F02CAD231C3843A500B09D9C /* RDSAnnotatedText.swift */,
-				F02CAD251C38446300B09D9C /* RDSAnnotatedTextStorage.swift */,
+				F02CAD251C38446300B09D9C /* RDSAnnotatedTextRenderer.swift */,
 			);
 			path = RDSAnnotatedLabel;
 			sourceTree = "<group>";
@@ -290,7 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F06D8A2A1C316BC200C81AD5 /* RDSAnnotatedLabel.swift in Sources */,
-				F02CAD261C38446300B09D9C /* RDSAnnotatedTextStorage.swift in Sources */,
+				F02CAD261C38446300B09D9C /* RDSAnnotatedTextRenderer.swift in Sources */,
 				F02CAD241C3843A500B09D9C /* RDSAnnotatedText.swift in Sources */,
 				F02CAD221C38433E00B09D9C /* RDSAnnotatedMatcher.swift in Sources */,
 			);

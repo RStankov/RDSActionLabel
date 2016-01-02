@@ -15,9 +15,9 @@ public class RDSAnnotatedLabel: UILabel {
     override public var font: UIFont! { didSet { updateUI() } }
     override public var textColor: UIColor! { didSet { updateUI() } }
 
-    lazy var textStorage = RDSAnnotatedTextStorage()
+    lazy var textRenderer = RDSAnnotatedTextRenderer()
 
-    private lazy var items = [RDSAnnotatedText]()
+    private lazy var matchedTexts = [RDSAnnotatedText]()
     private lazy var matchers = [RDSAnnotatedMatcher]()
 
     override public init(frame: CGRect) {
@@ -42,29 +42,29 @@ public class RDSAnnotatedLabel: UILabel {
     }
 
     public func addMatcher(pattern: String, color: UIColor? = nil, selectedColor: UIColor? = nil, handle: ((String) -> ())? = nil) {
-        matchers.append(RDSAnnotatedMatcher(pattern: pattern, color: color ?? self.textColor!, selectedColor: selectedColor, handle: handle));
+        matchers.append(RDSAnnotatedMatcher(pattern: pattern, color: color ?? textColor!, selectedColor: selectedColor, handle: handle));
         updateUI()
     }
 
     public override func drawTextInRect(rect: CGRect) {
-        textStorage.drawTextInRect(rect)
+        textRenderer.drawTextInRect(rect)
     }
 
     public override func sizeThatFits(size: CGSize) -> CGSize {
-        return textStorage.sizeThatFits(size)
+        return textRenderer.sizeThatFits(size)
     }
 
     public override func didMoveToSuperview() {
         updateUI()
     }
 
-    private var selectedElement: RDSAnnotatedText? = nil {
+    private var selectedText: RDSAnnotatedText? = nil {
         willSet {
-            styleItem(selectedElement, isSelected: false)
+            styleText(selectedText, isSelected: false)
         }
 
         didSet {
-            styleItem(selectedElement, isSelected: true)
+            styleText(selectedText, isSelected: true)
             setNeedsDisplay()
         }
     }
@@ -72,20 +72,25 @@ public class RDSAnnotatedLabel: UILabel {
     func onTouch(gesture: UILongPressGestureRecognizer) {
         switch gesture.state {
             case .Began, .Changed:
-                selectedElement = elementAtLocation(gesture.locationInView(self))
+                selectedText = textAtLocation(gesture.locationInView(self))
+                break
+
             case .Cancelled, .Ended:
-                selectedElement?.handle()
-                selectedElement = nil
-            default: ()
+                selectedText?.handle()
+                selectedText = nil
+                break
+
+            default:
+                break
         }
     }
 
-    private func elementAtLocation(location: CGPoint) -> RDSAnnotatedText? {
-        guard let index = textStorage.indexForPoint(location) else { return nil }
+    private func textAtLocation(location: CGPoint) -> RDSAnnotatedText? {
+        guard let index = textRenderer.indexForPoint(location) else { return nil }
 
-        for element in items {
-            if element.inRange(index) {
-                return element
+        for text in matchedTexts {
+            if text.inRange(index) {
+                return text
             }
         }
 
@@ -95,29 +100,29 @@ public class RDSAnnotatedLabel: UILabel {
     private func updateUI() {
         guard let _ = superview else { return }
 
-        items.removeAll()
+        matchedTexts.removeAll()
 
         let attributedString = attributedText ?? NSAttributedString(string: text ?? "", attributes: [NSFontAttributeName: font!, NSForegroundColorAttributeName: textColor])
 
-        textStorage.attributedString = attributedString
+        textRenderer.attributedString = attributedString
 
         let string = attributedString.string as NSString
         for word in string.componentsSeparatedByString(" ") {
             for matcher in matchers {
                 if (matcher.isMatching(word)) {
-                    let item = RDSAnnotatedText(range: string.rangeOfString(word), string: word, matcher: matcher)
+                    let text = RDSAnnotatedText(range: string.rangeOfString(word), string: word, matcher: matcher)
 
-                    items.append(item)
-                    styleItem(item)
+                    matchedTexts.append(text)
+                    styleText(text)
                 }
             }
         }
     }
 
-    private func styleItem(item: RDSAnnotatedText?, isSelected: Bool = false) {
-        guard let item = item else { return }
+    private func styleText(text: RDSAnnotatedText?, isSelected: Bool = false) {
+        guard let text = text else { return }
 
-        textStorage.setColor(item.color(isSelected), range: item.range)
+        textRenderer.setColor(text.color(isSelected), range: text.range)
     }
 }
 

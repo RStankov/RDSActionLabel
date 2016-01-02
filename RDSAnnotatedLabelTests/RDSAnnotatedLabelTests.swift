@@ -175,7 +175,7 @@ class TestGesture : UILongPressGestureRecognizer {
 extension RDSAnnotatedLabel {
     func colorForText(text:String) -> UIColor {
         var range = NSRange(location: 0, length: 0)
-        let attr  = textStorage.attributedString
+        let attr  = textRenderer.attributedString
         let index = (attr.string as NSString).rangeOfString(text).location
 
         return attr.attribute(NSForegroundColorAttributeName, atIndex: index, effectiveRange: &range) as! UIColor
@@ -183,7 +183,7 @@ extension RDSAnnotatedLabel {
 
     func fontForText(text:String) -> UIFont {
         var range = NSRange(location: 0, length: 0)
-        let attr  = textStorage.attributedString
+        let attr  = textRenderer.attributedString
         let index = (attr.string as NSString).rangeOfString(text).location
 
         return attr.attribute(NSFontAttributeName, atIndex: index, effectiveRange: &range) as! UIFont
