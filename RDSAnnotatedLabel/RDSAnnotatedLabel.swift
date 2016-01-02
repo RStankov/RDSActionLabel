@@ -9,119 +9,6 @@
 import Foundation
 import UIKit
 
-
-typealias RDSAnnotatedHandler = ((String) -> ())
-
-let noopHandle:RDSAnnotatedHandler = { (arg:String) in }
-
-class RDSAnnotatedMatcher {
-    private let regexp:NSRegularExpression
-    private let handle: RDSAnnotatedHandler
-
-    let color: UIColor
-    let selectedColor: UIColor
-
-    init(pattern: String, color: UIColor, selectedColor: UIColor? = nil, handle: RDSAnnotatedHandler? = nil ) {
-        self.regexp = try! NSRegularExpression(pattern: pattern, options: [.CaseInsensitive])
-
-        self.color = color
-        self.selectedColor = selectedColor ?? color
-
-        if let handle = handle {
-            self.handle = handle
-        } else {
-            self.handle = noopHandle
-        }
-    }
-
-    func isMatching(string: String) -> Bool {
-        let results = regexp.matchesInString(string, options: [], range: NSRange(location: 0, length: string.characters.count))
-        return results.count > 0
-    }
-}
-
-class RDSAnnotatedText : Equatable {
-    private let matcher: RDSAnnotatedMatcher;
-    private let string: String
-    private let range: NSRange
-
-    init(range: NSRange, string: String, matcher: RDSAnnotatedMatcher) {
-        self.range = range
-        self.string = string
-        self.matcher = matcher;
-    }
-
-    func color(isSelected:Bool = false) -> UIColor {
-        return isSelected ? matcher.selectedColor : matcher.color
-    }
-
-    func handle() {
-        matcher.handle(string)
-    }
-
-    func inRange(index: Int) -> Bool {
-        return index >= range.location && index <= range.location + range.length
-    }
-}
-
-func ==(lhs: RDSAnnotatedText, rhs: RDSAnnotatedText) -> Bool {
-    return lhs.range.location == rhs.range.location && lhs.range.length != rhs.range.length
-}
-
-class RDSAnnotatedTextStorage {
-    private lazy var textStorage = NSTextStorage()
-    private lazy var textContainer = NSTextContainer()
-    private lazy var layoutManager = NSLayoutManager()
-
-    var attributedString : NSAttributedString {
-        get {
-            return textStorage
-        }
-
-        set(value) {
-            textStorage.setAttributedString(value)
-        }
-    }
-
-    init() {
-        textStorage.addLayoutManager(layoutManager)
-        layoutManager.addTextContainer(textContainer)
-        textContainer.lineFragmentPadding = 0
-    }
-
-    func drawTextInRect(rect: CGRect) {
-        textContainer.size = rect.size
-
-        let range = NSRange(location: 0, length: textStorage.length)
-        layoutManager.drawBackgroundForGlyphRange(range, atPoint: rect.origin)
-        layoutManager.drawGlyphsForGlyphRange(range, atPoint: rect.origin)
-    }
-
-    func setColor(color: UIColor, range:NSRange) {
-        textStorage.addAttributes([NSForegroundColorAttributeName:color], range: range)
-    }
-
-    func sizeThatFits(size: CGSize) -> CGSize {
-        let currentSize = textContainer.size
-
-        defer { textContainer.size = currentSize }
-
-        textContainer.size = size
-        return layoutManager.usedRectForTextContainer(textContainer).size
-    }
-
-    func indexForPoint(location: CGPoint) -> Int? {
-        if textStorage.length == 0 {
-            return nil
-        }
-
-        let boundingRect = layoutManager.boundingRectForGlyphRange(NSRange(location: 0, length: textStorage.length), inTextContainer: textContainer)
-        guard boundingRect.contains(location) else { return nil }
-
-        return layoutManager.glyphIndexForPoint(location, inTextContainer: textContainer)
-    }
-}
-
 public class RDSAnnotatedLabel: UILabel {
     override public var text: String? { didSet { updateUI() } }
     override public var attributedText: NSAttributedString? { didSet { updateUI() } }
@@ -184,12 +71,12 @@ public class RDSAnnotatedLabel: UILabel {
 
     func onTouch(gesture: UILongPressGestureRecognizer) {
         switch gesture.state {
-        case .Began, .Changed:
-            selectedElement = elementAtLocation(gesture.locationInView(self))
-        case .Cancelled, .Ended:
-            selectedElement?.handle()
-            selectedElement = nil
-        default: ()
+            case .Began, .Changed:
+                selectedElement = elementAtLocation(gesture.locationInView(self))
+            case .Cancelled, .Ended:
+                selectedElement?.handle()
+                selectedElement = nil
+            default: ()
         }
     }
 

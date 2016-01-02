@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F02CAD221C38433E00B09D9C /* RDSAnnotatedMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02CAD211C38433E00B09D9C /* RDSAnnotatedMatcher.swift */; };
+		F02CAD241C3843A500B09D9C /* RDSAnnotatedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02CAD231C3843A500B09D9C /* RDSAnnotatedText.swift */; };
+		F02CAD261C38446300B09D9C /* RDSAnnotatedTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02CAD251C38446300B09D9C /* RDSAnnotatedTextStorage.swift */; };
 		F06D8A2A1C316BC200C81AD5 /* RDSAnnotatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06D8A291C316BC200C81AD5 /* RDSAnnotatedLabel.swift */; };
 		F06D8A341C316FDD00C81AD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06D8A331C316FDD00C81AD5 /* AppDelegate.swift */; };
 		F06D8A361C316FDD00C81AD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06D8A351C316FDD00C81AD5 /* ViewController.swift */; };
@@ -30,6 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F02CAD211C38433E00B09D9C /* RDSAnnotatedMatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSAnnotatedMatcher.swift; sourceTree = "<group>"; };
+		F02CAD231C3843A500B09D9C /* RDSAnnotatedText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSAnnotatedText.swift; sourceTree = "<group>"; };
+		F02CAD251C38446300B09D9C /* RDSAnnotatedTextStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSAnnotatedTextStorage.swift; sourceTree = "<group>"; };
 		F06D8A291C316BC200C81AD5 /* RDSAnnotatedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSAnnotatedLabel.swift; sourceTree = "<group>"; };
 		F06D8A311C316FDD00C81AD5 /* RDSAnnotatedLabelDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RDSAnnotatedLabelDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F06D8A331C316FDD00C81AD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,9 +115,12 @@
 		F0C6E8B61C2ED1AC00AAE79C /* RDSAnnotatedLabel */ = {
 			isa = PBXGroup;
 			children = (
-				F0C6E8B71C2ED1AC00AAE79C /* RDSAnnotatedLabel.h */,
 				F0C6E8B91C2ED1AC00AAE79C /* Info.plist */,
+				F0C6E8B71C2ED1AC00AAE79C /* RDSAnnotatedLabel.h */,
 				F06D8A291C316BC200C81AD5 /* RDSAnnotatedLabel.swift */,
+				F02CAD211C38433E00B09D9C /* RDSAnnotatedMatcher.swift */,
+				F02CAD231C3843A500B09D9C /* RDSAnnotatedText.swift */,
+				F02CAD251C38446300B09D9C /* RDSAnnotatedTextStorage.swift */,
 			);
 			path = RDSAnnotatedLabel;
 			sourceTree = "<group>";
@@ -275,6 +284,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F06D8A2A1C316BC200C81AD5 /* RDSAnnotatedLabel.swift in Sources */,
+				F02CAD261C38446300B09D9C /* RDSAnnotatedTextStorage.swift in Sources */,
+				F02CAD241C3843A500B09D9C /* RDSAnnotatedText.swift in Sources */,
+				F02CAD221C38433E00B09D9C /* RDSAnnotatedMatcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +504,7 @@
 				F06D8A581C316FDD00C81AD5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F0C6E8AE1C2ED1AC00AAE79C /* Build configuration list for PBXProject "RDSAnnotatedLabel" */ = {
 			isa = XCConfigurationList;
