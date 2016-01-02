@@ -26,3 +26,4 @@ Pods/*
 .DS_Store
 
 UITests/.DS_Store
+test_output
