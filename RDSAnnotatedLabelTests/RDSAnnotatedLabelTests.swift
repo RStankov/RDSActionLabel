@@ -57,15 +57,77 @@ class RDSAnnotatedLabelTests: XCTestCase {
 
     // MARK: Public
 
-    func testMatchingText() {
+    func testRenderWhenSetMatcher() {
         let label = buildLabel()
 
-        label.addMatcher("test", color: UIColor.redColor())
         label.textColor = UIColor.blackColor()
-        label.text = "this is test, here are some other words"
+        label.text = "text"
 
-        XCTAssertEqual(label.colorForText("this"), UIColor.blackColor())
-        XCTAssertEqual(label.colorForText("test"), UIColor.redColor())
+        XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
+
+        label.addMatcher("text", color: UIColor.redColor())
+
+        XCTAssertEqual(label.colorForText("text"), UIColor.redColor())
+    }
+
+    func testRenderWhenSetTextColor() {
+        let label = buildLabel()
+
+        label.textColor = UIColor.blackColor()
+        label.text = "text"
+
+        XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
+
+        label.textColor = UIColor.redColor()
+
+        XCTAssertEqual(label.colorForText("text"), UIColor.redColor())
+
+    }
+
+    func testRenderWhenSetText() {
+        let label = buildLabel()
+
+        label.textColor = UIColor.blackColor()
+        label.text = "text"
+
+        label.addMatcher("new-text", color: UIColor.redColor())
+
+        XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
+
+        label.text = "new-text"
+
+        XCTAssertEqual(label.colorForText("new-text"), UIColor.redColor())
+
+    }
+
+    func testRenderWhenSetFont() {
+        let label = buildLabel()
+
+        label.textColor = UIColor.blackColor()
+        label.text = "text"
+        label.font = UIFont.boldSystemFontOfSize(20)
+        label.addMatcher("text", color: UIColor.redColor())
+
+        XCTAssertEqual(label.fontForText("text"), label.font)
+
+        label.font = UIFont.boldSystemFontOfSize(10)
+
+        XCTAssertEqual(label.fontForText("text"), label.font)
+    }
+
+    func testRenderWhenSetAttributedText() {
+        let label = buildLabel()
+
+        let font = UIFont.boldSystemFontOfSize(20)
+
+        label.attributedText = NSAttributedString(string: "label text", attributes: [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.blackColor()])
+        label.addMatcher("text", color: UIColor.redColor())
+
+        XCTAssertEqual(label.fontForText("label"), font)
+        XCTAssertEqual(label.fontForText("text"), font)
+
+        XCTAssertEqual(label.colorForText("label"), UIColor.blackColor())
+        XCTAssertEqual(label.colorForText("text"), UIColor.redColor())
     }
 
     private lazy var container = UIView()
@@ -85,5 +147,13 @@ extension RDSAnnotatedLabel {
         let index = (attr.string as NSString).rangeOfString(text).location
 
         return attr.attribute(NSForegroundColorAttributeName, atIndex: index, effectiveRange: &range) as! UIColor
+    }
+
+    func fontForText(text:String) -> UIFont {
+        var range = NSRange(location: 0, length: 0)
+        let attr  = textStorage.attributedString
+        let index = (attr.string as NSString).rangeOfString(text).location
+
+        return attr.attribute(NSFontAttributeName, atIndex: index, effectiveRange: &range) as! UIFont
     }
 }
