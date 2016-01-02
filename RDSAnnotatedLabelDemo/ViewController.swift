@@ -11,10 +11,10 @@ import RDSAnnotatedLabel
 
 class ViewController: UIViewController {
 
+    private lazy var label:RDSAnnotatedLabel = RDSAnnotatedLabel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let label = RDSAnnotatedLabel()
 
         label.text = "Word \n #hash-1 \n #hash-2 \n @username \n http://example.com \n other text"
         label.textColor = UIColor.grayColor()
@@ -40,6 +40,8 @@ class ViewController: UIViewController {
         let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         vc.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
         presentViewController(vc, animated: true, completion: nil)
+
+        label.text = "\(label.text!) \n was tapped"
     }
 
 
