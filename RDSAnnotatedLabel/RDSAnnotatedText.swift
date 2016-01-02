@@ -34,5 +34,5 @@ class RDSAnnotatedText : Equatable {
 }
 
 func ==(lhs: RDSAnnotatedText, rhs: RDSAnnotatedText) -> Bool {
-    return lhs.string == rhs.string && lhs.range.location == rhs.range.location && lhs.range.length != rhs.range.length
+    return lhs.string == rhs.string && lhs.range.location == rhs.range.location && lhs.range.length == rhs.range.length
 }
