@@ -206,10 +206,8 @@ public class RDSAnnotatedLabel: UILabel {
     }
 
     private func updateUI() {
-        print("check")
         guard let _ = superview else { return }
 
-        print("render")
         items.removeAll()
 
         let attributedString = attributedText ?? NSAttributedString(string: text ?? "", attributes: [NSFontAttributeName: font!, NSForegroundColorAttributeName: textColor])
