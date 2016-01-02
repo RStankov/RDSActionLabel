@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import UIKit.UIGestureRecognizerSubclass
 
 @testable import RDSAnnotatedLabel
 
@@ -92,6 +93,82 @@ class RDSAnnotatedLabelTests: XCTestCase {
 
         XCTAssertEqual(label.colorForText("label"), UIColor.blackColor())
         XCTAssertEqual(label.colorForText("text"), UIColor.redColor())
+    }
+
+    func testTappingOnMatchedText() {
+        var passedText = "not called"
+
+        let label = buildLabel()
+
+        label.text = "tapped"
+        label.addMatcher("tapped", color: UIColor.redColor()) { passedText = $0 }
+
+        let gesture = TestGesture()
+
+
+        gesture.simulateState(.Began, locationInView: CGPointMake(2, 3))
+
+        label.onTouch(gesture)
+
+        gesture.simulateState(.Ended)
+
+        label.onTouch(gesture)
+
+        XCTAssertEqual(passedText, "tapped");
+    }
+
+    func testTappingOutsideMatchedText() {
+        var passedText = "not called"
+
+        let label = buildLabel()
+
+        label.text = "tapped"
+        label.addMatcher("tapped", color: UIColor.redColor()) { passedText = $0 }
+
+        let gesture = TestGesture()
+
+
+        gesture.simulateState(.Began, locationInView: CGPointMake(2000, 3000))
+
+        label.onTouch(gesture)
+
+        gesture.simulateState(.Ended)
+
+        label.onTouch(gesture)
+
+        XCTAssertEqual(passedText, "not called");
+    }
+
+    func testHighlightingOnMatchedText() {
+        let label = buildLabel()
+
+        label.text = "text"
+        label.addMatcher("text", color: UIColor.blackColor(), selectedColor: UIColor.redColor())
+
+        let gesture = TestGesture()
+
+        gesture.simulateState(.Began, locationInView: CGPointMake(2, 3))
+
+        label.onTouch(gesture)
+
+        XCTAssertEqual(label.colorForText("text"), UIColor.redColor())
+    }
+}
+
+class TestGesture : UILongPressGestureRecognizer {
+    private var simulatedLocationInView = CGPointZero
+
+    func simulateState(state: UIGestureRecognizerState) {
+        simulateState(state, locationInView: CGPointZero)
+    }
+
+    func simulateState(state: UIGestureRecognizerState, locationInView: CGPoint) {
+        self.state = state
+        self.simulatedLocationInView = locationInView
+    }
+
+    override func locationInView(view: UIView?) -> CGPoint {
+        return simulatedLocationInView
     }
 }
 
