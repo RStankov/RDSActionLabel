@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if ! which scan &> /dev/null; then
+  echo "Cant find 'scan', please install scan and re-run the script:"
+  echo
+  echo "gem install scan"
+  echo
+  exit 1
+fi
+
+scan --scheme "RDSActiveLabel"
