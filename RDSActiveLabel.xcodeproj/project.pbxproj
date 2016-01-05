@@ -517,6 +517,7 @@
 				F04C292A1C3C5F3000A60C8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F0A7749A1C3C5E8B00A729FC /* Build configuration list for PBXProject "RDSActiveLabel" */ = {
 			isa = XCConfigurationList;

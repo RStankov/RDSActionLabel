@@ -28,10 +28,10 @@ class ViewController: UIViewController {
         let URLColor = UIColor.blueColor()
         let URLSelectedColor = UIColor.darkTextColor()
 
-        label.addMatcher("Word") { self.alert("Custom", message: $0) }
-        label.addMatcher("^@\\w+", color: mentionColor, selectedColor: mentionSelectedColor) { self.alert("Mention", message: $0) }
-        label.addMatcher("#\\w+", color: hashtagColor, selectedColor: hashtagSelectedColor) { self.alert("Hashtag", message: $0) }
-        label.addMatcher("(?i)https?://(?:www\\.)?\\S+(?:/|\\b)", color: URLColor, selectedColor: URLSelectedColor) { self.alert("URL", message: $0) }
+        label.match("Word") { self.alert("Custom", message: $0) }
+        label.matchUsername(color: mentionColor, selectedColor: mentionSelectedColor) { self.alert("Mention", message: $0) }
+        label.matchHashtag(color: hashtagColor, selectedColor: hashtagSelectedColor) { self.alert("Hashtag", message: $0) }
+        label.matchUrl(color: URLColor, selectedColor: URLSelectedColor) { self.alert("URL", message: $0) }
 
         label.frame = CGRect(x: 40, y: 40, width: view.frame.width - 80, height: view.frame.height - 80)
         view.addSubview(label)

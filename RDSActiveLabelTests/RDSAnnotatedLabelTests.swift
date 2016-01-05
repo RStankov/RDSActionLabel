@@ -30,7 +30,7 @@ class RDSActiveLabelTests: XCTestCase {
 
         XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
 
-        label.addMatcher("text", color: UIColor.redColor())
+        label.match("text", color: UIColor.redColor())
 
         XCTAssertEqual(label.colorForText("text"), UIColor.redColor())
     }
@@ -55,7 +55,7 @@ class RDSActiveLabelTests: XCTestCase {
         label.textColor = UIColor.blackColor()
         label.text = "text"
 
-        label.addMatcher("new-text", color: UIColor.redColor())
+        label.match("new-text", color: UIColor.redColor())
 
         XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
 
@@ -71,7 +71,7 @@ class RDSActiveLabelTests: XCTestCase {
         label.textColor = UIColor.blackColor()
         label.text = "text"
         label.font = UIFont.boldSystemFontOfSize(20)
-        label.addMatcher("text", color: UIColor.redColor())
+        label.match("text", color: UIColor.redColor())
 
         XCTAssertEqual(label.fontForText("text"), label.font)
 
@@ -86,7 +86,7 @@ class RDSActiveLabelTests: XCTestCase {
         let font = UIFont.boldSystemFontOfSize(20)
 
         label.attributedText = NSAttributedString(string: "label text", attributes: [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.blackColor()])
-        label.addMatcher("text", color: UIColor.redColor())
+        label.match("text", color: UIColor.redColor())
 
         XCTAssertEqual(label.fontForText("label"), font)
         XCTAssertEqual(label.fontForText("text"), font)
@@ -101,7 +101,7 @@ class RDSActiveLabelTests: XCTestCase {
         let label = buildLabel()
 
         label.text = "tapped"
-        label.addMatcher("tapped", color: UIColor.redColor()) { passedText = $0 }
+        label.match("tapped", color: UIColor.redColor()) { passedText = $0 }
 
         let gesture = TestGesture()
 
@@ -123,7 +123,7 @@ class RDSActiveLabelTests: XCTestCase {
         let label = buildLabel()
 
         label.text = "tapped"
-        label.addMatcher("tapped", color: UIColor.redColor()) { passedText = $0 }
+        label.match("tapped", color: UIColor.redColor()) { passedText = $0 }
 
         let gesture = TestGesture()
 
@@ -143,7 +143,7 @@ class RDSActiveLabelTests: XCTestCase {
         let label = buildLabel()
 
         label.text = "text"
-        label.addMatcher("text", color: UIColor.blackColor(), selectedColor: UIColor.redColor())
+        label.match("text", color: UIColor.blackColor(), selectedColor: UIColor.redColor())
 
         let gesture = TestGesture()
 
@@ -152,6 +152,39 @@ class RDSActiveLabelTests: XCTestCase {
         label.onTouch(gesture)
 
         XCTAssertEqual(label.colorForText("text"), UIColor.redColor())
+    }
+
+    func testMatchURL() {
+        let label = buildLabel()
+
+        label.textColor = UIColor.blackColor()
+        label.text = "http://example.com text"
+        label.matchUrl(color: UIColor.redColor())
+
+        XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
+        XCTAssertEqual(label.colorForText("http://example.com"), UIColor.redColor())
+    }
+
+    func testMatchUsername() {
+        let label = buildLabel()
+
+        label.textColor = UIColor.blackColor()
+        label.text = "@username text"
+        label.matchUsername(color: UIColor.redColor())
+
+        XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
+        XCTAssertEqual(label.colorForText("@username"), UIColor.redColor())
+    }
+
+    func testMatchHashtag() {
+        let label = buildLabel()
+
+        label.textColor = UIColor.blackColor()
+        label.text = "#tag text"
+        label.matchHashtag(color: UIColor.redColor())
+
+        XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
+        XCTAssertEqual(label.colorForText("#tag"), UIColor.redColor())
     }
 }
 
