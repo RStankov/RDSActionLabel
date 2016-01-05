@@ -20,9 +20,9 @@ let label = RDSActiveLabel()
 
 label.text = "Comment containing several #hash-1 #hash-2 from @username linking to http://example.com/page"
 
-label.addMatcher("^@\\w+", color: userColor, selectedColor: selectedUserColor) { self.selectedUser($0) }
-label.addMatcher("#\\w+", color: hashtagColor, selectedColor: hashtagSelectedColor) { self.selectedHashTag($0) }
-label.addMatcher("(?i)https?://(?:www\\.)?\\S+(?:/|\\b)", color: URLColor, selectedColor: URLSelectedColor) { self.selectedURL($0) }
+label.matchUsername(color: mentionColor, selectedColor: mentionSelectedColor) { self.selectUser($0) }
+label.matchHashtag(color: hashtagColor, selectedColor: hashtagSelectedColor) { self.selectHash($0) }
+label.matchUrl(color: URLColor, selectedColor: URLSelectedColor) { self.selectUrl($0) }
 ```
 
 ```
