@@ -1,6 +1,6 @@
 //
-//  RDSAnnotatedLabel.swift
-//  RDSAnnotatedLabel
+//  RDSActiveLabel.swift
+//  RDSActiveLabel
 //
 //  Created by Radoslav Stankov on 12/28/15.
 //  Copyright © 2015 Radoslav Stankov. All rights reserved.
@@ -9,16 +9,16 @@
 import Foundation
 import UIKit
 
-public class RDSAnnotatedLabel: UILabel {
+public class RDSActiveLabel: UILabel {
     override public var text: String? { didSet { updateUI() } }
     override public var attributedText: NSAttributedString? { didSet { updateUI() } }
     override public var font: UIFont! { didSet { updateUI() } }
     override public var textColor: UIColor! { didSet { updateUI() } }
 
-    lazy var textRenderer = RDSAnnotatedTextRenderer()
+    lazy var textRenderer = RDSActiveTextRenderer()
 
-    private lazy var matchedTexts = [RDSAnnotatedText]()
-    private lazy var matchers = [RDSAnnotatedMatcher]()
+    private lazy var matchedTexts = [RDSActiveText]()
+    private lazy var matchers = [RDSActiveMatcher]()
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,7 +42,7 @@ public class RDSAnnotatedLabel: UILabel {
     }
 
     public func addMatcher(pattern: String, color: UIColor? = nil, selectedColor: UIColor? = nil, handle: ((String) -> ())? = nil) {
-        matchers.append(RDSAnnotatedMatcher(pattern: pattern, color: color ?? textColor!, selectedColor: selectedColor, handle: handle));
+        matchers.append(RDSActiveMatcher(pattern: pattern, color: color ?? textColor!, selectedColor: selectedColor, handle: handle));
         updateUI()
     }
 
@@ -58,7 +58,7 @@ public class RDSAnnotatedLabel: UILabel {
         updateUI()
     }
 
-    private var selectedText: RDSAnnotatedText? = nil {
+    private var selectedText: RDSActiveText? = nil {
         willSet {
             styleText(selectedText, isSelected: false)
         }
@@ -85,7 +85,7 @@ public class RDSAnnotatedLabel: UILabel {
         }
     }
 
-    private func textAtLocation(location: CGPoint) -> RDSAnnotatedText? {
+    private func textAtLocation(location: CGPoint) -> RDSActiveText? {
         guard let index = textRenderer.indexForPoint(location) else { return nil }
 
         for text in matchedTexts {
@@ -110,7 +110,7 @@ public class RDSAnnotatedLabel: UILabel {
         for word in string.componentsSeparatedByString(" ") {
             for matcher in matchers {
                 if (matcher.isMatching(word)) {
-                    let text = RDSAnnotatedText(range: string.rangeOfString(word), string: word, matcher: matcher)
+                    let text = RDSActiveText(range: string.rangeOfString(word), string: word, matcher: matcher)
 
                     matchedTexts.append(text)
                     styleText(text)
@@ -119,14 +119,14 @@ public class RDSAnnotatedLabel: UILabel {
         }
     }
 
-    private func styleText(text: RDSAnnotatedText?, isSelected: Bool = false) {
+    private func styleText(text: RDSActiveText?, isSelected: Bool = false) {
         guard let text = text else { return }
 
         textRenderer.setColor(text.color(isSelected), range: text.range)
     }
 }
 
-extension RDSAnnotatedLabel: UIGestureRecognizerDelegate {
+extension RDSActiveLabel: UIGestureRecognizerDelegate {
     public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }

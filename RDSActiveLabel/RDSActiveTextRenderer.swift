@@ -1,6 +1,6 @@
 //
-//  RDSAnnotatedTextStorage.swift
-//  RDSAnnotatedLabel
+//  RDSActiveTextStorage.swift
+//  RDSActiveLabel
 //
 //  Created by Radoslav Stankov on 1/2/16.
 //  Copyright © 2016 Radoslav Stankov. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RDSAnnotatedTextRenderer {
+class RDSActiveTextRenderer {
     private lazy var textStorage = NSTextStorage()
     private lazy var textContainer = NSTextContainer()
     private lazy var layoutManager = NSLayoutManager()

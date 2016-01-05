@@ -12,7 +12,7 @@ import RDSActiveLabel
 
 class ViewController: UIViewController {
 
-    private lazy var label:RDSAnnotatedLabel = RDSAnnotatedLabel()
+    private lazy var label:RDSActiveLabel = RDSActiveLabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()

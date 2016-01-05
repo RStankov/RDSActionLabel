@@ -1,6 +1,6 @@
 //
-//  RDSAnnotatedMatcher.swift
-//  RDSAnnotatedLabel
+//  RDSActiveMatcher.swift
+//  RDSActiveLabel
 //
 //  Created by Radoslav Stankov on 1/2/16.
 //  Copyright © 2016 Radoslav Stankov. All rights reserved.
@@ -8,18 +8,18 @@
 
 import Foundation
 
-typealias RDSAnnotatedHandler = ((String) -> ())
+typealias RDSActiveHandler = ((String) -> ())
 
-let rdsAnnotatedNoopHandler: RDSAnnotatedHandler = { (arg: String) in }
+let RDSActiveNoopHandler: RDSActiveHandler = { (arg: String) in }
 
-class RDSAnnotatedMatcher {
+class RDSActiveMatcher {
     private let regexp: NSRegularExpression
 
-    let handle: RDSAnnotatedHandler
+    let handle: RDSActiveHandler
     let color: UIColor
     let selectedColor: UIColor
 
-    init(pattern : String, color : UIColor, selectedColor : UIColor? = nil, handle : RDSAnnotatedHandler? = nil ) {
+    init(pattern : String, color : UIColor, selectedColor : UIColor? = nil, handle : RDSActiveHandler? = nil ) {
         self.regexp = try! NSRegularExpression(pattern: pattern, options: [.CaseInsensitive])
 
         self.color = color
@@ -28,7 +28,7 @@ class RDSAnnotatedMatcher {
         if let handle = handle {
             self.handle = handle
         } else {
-            self.handle = rdsAnnotatedNoopHandler
+            self.handle = RDSActiveNoopHandler
         }
     }
 
