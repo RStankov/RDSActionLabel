@@ -15,10 +15,9 @@ TODO: Cocoa pods instructions
 ## Usage
 
 ```swift
-
 let label = RDSActiveLabel()
 
-label.text = "Comment containing several #hash-1 #hash-2 from @username linking to http://example.com/page"
+label.text = "Comment containing several #hash-1 #hash-2 from @username linking to http://example.com"
 
 label.matchUsername(color: mentionColor, selectedColor: mentionSelectedColor) { self.selectUser($0) }
 label.matchHashtag(color: hashtagColor, selectedColor: hashtagSelectedColor) { self.selectHash($0) }
@@ -29,8 +28,12 @@ label.matchUrl(color: URLColor, selectedColor: URLSelectedColor) { self.selectUr
 TODO: GIF DEMO
 ```
 
-```
-TODO: All features
+#### Defining your own matchers
+
+```swift
+let label = RDSActiveLabel()
+
+label.match("custom regular expression", color: color, selectedColor: selectedColor) { self.handle($0) }
 ```
 
 ### Tests
