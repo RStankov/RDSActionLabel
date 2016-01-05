@@ -1,6 +1,6 @@
 //
-//  RDSActiveLabel.swift
-//  RDSActiveLabel
+//  RDSActionLabel.swift
+//  RDSActionLabel
 //
 //  Created by Radoslav Stankov on 12/28/15.
 //  Copyright © 2015 Radoslav Stankov. All rights reserved.
@@ -9,16 +9,16 @@
 import Foundation
 import UIKit
 
-public class RDSActiveLabel: UILabel {
+public class RDSActionLabel: UILabel {
     override public var text: String? { didSet { updateUI() } }
     override public var attributedText: NSAttributedString? { didSet { updateUI() } }
     override public var font: UIFont! { didSet { updateUI() } }
     override public var textColor: UIColor! { didSet { updateUI() } }
 
-    lazy var textRenderer = RDSActiveTextRenderer()
+    lazy var textRenderer = RDSActionTextRenderer()
 
-    private lazy var matchedTexts = [RDSActiveText]()
-    private lazy var matchers = [RDSActiveMatcher]()
+    private lazy var matchedTexts = [RDSActionText]()
+    private lazy var matchers = [RDSActionMatcher]()
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,7 +42,7 @@ public class RDSActiveLabel: UILabel {
     }
 
     public func match(pattern: String, color: UIColor? = nil, selectedColor: UIColor? = nil, handle: ((String) -> ())? = nil) {
-        matchers.append(RDSActiveMatcher(pattern: pattern, color: color ?? textColor!, selectedColor: selectedColor, handle: handle));
+        matchers.append(RDSActionMatcher(pattern: pattern, color: color ?? textColor!, selectedColor: selectedColor, handle: handle));
         updateUI()
     }
 
@@ -70,7 +70,7 @@ public class RDSActiveLabel: UILabel {
         updateUI()
     }
 
-    private var selectedText: RDSActiveText? = nil {
+    private var selectedText: RDSActionText? = nil {
         willSet {
             styleText(selectedText, isSelected: false)
         }
@@ -97,7 +97,7 @@ public class RDSActiveLabel: UILabel {
         }
     }
 
-    private func textAtLocation(location: CGPoint) -> RDSActiveText? {
+    private func textAtLocation(location: CGPoint) -> RDSActionText? {
         guard let index = textRenderer.indexForPoint(location) else { return nil }
 
         for text in matchedTexts {
@@ -122,7 +122,7 @@ public class RDSActiveLabel: UILabel {
         for word in string.componentsSeparatedByString(" ") {
             for matcher in matchers {
                 if (matcher.isMatching(word)) {
-                    let text = RDSActiveText(range: string.rangeOfString(word), string: word, matcher: matcher)
+                    let text = RDSActionText(range: string.rangeOfString(word), string: word, matcher: matcher)
 
                     matchedTexts.append(text)
                     styleText(text)
@@ -131,14 +131,14 @@ public class RDSActiveLabel: UILabel {
         }
     }
 
-    private func styleText(text: RDSActiveText?, isSelected: Bool = false) {
+    private func styleText(text: RDSActionText?, isSelected: Bool = false) {
         guard let text = text else { return }
 
         textRenderer.setColor(text.color(isSelected), range: text.range)
     }
 }
 
-extension RDSActiveLabel: UIGestureRecognizerDelegate {
+extension RDSActionLabel: UIGestureRecognizerDelegate {
     public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }

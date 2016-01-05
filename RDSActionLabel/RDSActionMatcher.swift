@@ -1,6 +1,6 @@
 //
-//  RDSActiveMatcher.swift
-//  RDSActiveLabel
+//  RDSActionMatcher.swift
+//  RDSActionLabel
 //
 //  Created by Radoslav Stankov on 1/2/16.
 //  Copyright © 2016 Radoslav Stankov. All rights reserved.
@@ -8,18 +8,18 @@
 
 import Foundation
 
-typealias RDSActiveHandler = ((String) -> ())
+typealias RDSActionHandler = ((String) -> ())
 
-let RDSActiveNoopHandler: RDSActiveHandler = { (arg: String) in }
+let RDSActionNoopHandler: RDSActionHandler = { (arg: String) in }
 
-class RDSActiveMatcher {
+class RDSActionMatcher {
     private let regexp: NSRegularExpression
 
-    let handle: RDSActiveHandler
+    let handle: RDSActionHandler
     let color: UIColor
     let selectedColor: UIColor
 
-    init(pattern : String, color : UIColor, selectedColor : UIColor? = nil, handle : RDSActiveHandler? = nil ) {
+    init(pattern : String, color : UIColor, selectedColor : UIColor? = nil, handle : RDSActionHandler? = nil ) {
         self.regexp = try! NSRegularExpression(pattern: pattern, options: [.CaseInsensitive])
 
         self.color = color
@@ -28,7 +28,7 @@ class RDSActiveMatcher {
         if let handle = handle {
             self.handle = handle
         } else {
-            self.handle = RDSActiveNoopHandler
+            self.handle = RDSActionNoopHandler
         }
     }
 

@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  RDSActiveLabelDemo
+//  RDSActionLabelDemo
 //
 //  Created by Radoslav Stankov on 1/5/16.
 //  Copyright © 2016 Radoslav Stankov. All rights reserved.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-import RDSActiveLabel
+import RDSActionLabel
 
 class ViewController: UIViewController {
 
-    private lazy var label:RDSActiveLabel = RDSActiveLabel()
+    private lazy var label:RDSActionLabel = RDSActionLabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()

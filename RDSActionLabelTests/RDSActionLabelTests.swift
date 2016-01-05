@@ -1,6 +1,6 @@
 //
-//  RDSActiveLabelTests.swift
-//  RDSActiveLabelTests
+//  RDSActionLabelTests.swift
+//  RDSActionLabelTests
 //
 //  Created by Radoslav Stankov on 12/26/15.
 //  Copyright © 2015 Radoslav Stankov. All rights reserved.
@@ -9,13 +9,13 @@
 import XCTest
 import UIKit.UIGestureRecognizerSubclass
 
-@testable import RDSActiveLabel
+@testable import RDSActionLabel
 
-class RDSActiveLabelTests: XCTestCase {
+class RDSActionLabelTests: XCTestCase {
 
     private lazy var container = UIView()
-    private func buildLabel() -> RDSActiveLabel {
-        let label = RDSActiveLabel()
+    private func buildLabel() -> RDSActionLabel {
+        let label = RDSActionLabel()
 
         container.addSubview(label)
 
@@ -205,7 +205,7 @@ class TestGesture : UILongPressGestureRecognizer {
     }
 }
 
-extension RDSActiveLabel {
+extension RDSActionLabel {
     func colorForText(text:String) -> UIColor {
         var range = NSRange(location: 0, length: 0)
         let attr  = textRenderer.attributedString

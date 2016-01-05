@@ -1,6 +1,6 @@
 //
-//  RDSActiveText.swift
-//  RDSActiveLabel
+//  RDSActionText.swift
+//  RDSActionLabel
 //
 //  Created by Radoslav Stankov on 1/2/16.
 //  Copyright © 2016 Radoslav Stankov. All rights reserved.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-class RDSActiveText : Equatable {
-    private let matcher: RDSActiveMatcher;
+class RDSActionText : Equatable {
+    private let matcher: RDSActionMatcher;
     private let string: String
 
     let range: NSRange
 
-    init(range: NSRange, string: String, matcher: RDSActiveMatcher) {
+    init(range: NSRange, string: String, matcher: RDSActionMatcher) {
         self.range = range
         self.string = string
         self.matcher = matcher;
@@ -33,6 +33,6 @@ class RDSActiveText : Equatable {
     }
 }
 
-func ==(lhs: RDSActiveText, rhs: RDSActiveText) -> Bool {
+func ==(lhs: RDSActionText, rhs: RDSActionText) -> Bool {
     return lhs.string == rhs.string && lhs.range.location == rhs.range.location && lhs.range.length == rhs.range.length
 }

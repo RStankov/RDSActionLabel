@@ -1,11 +1,11 @@
 platform :ios, '9.0'
 use_frameworks!
 
-target 'RDSActiveLabel' do
+target 'RDSActionLabel' do
 
 end
 
-target 'RDSActiveLabelTests' do
+target 'RDSActionLabelTests' do
 
 end
 

@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  RDSActiveLabelDemo
+//  RDSActionLabelDemo
 //
-//  Created by Radoslav Stankov on 1/5/16.
+//  Created by Radoslav Stankov on 1/6/16.
 //  Copyright © 2016 Radoslav Stankov. All rights reserved.
 //
 

@@ -1,8 +1,8 @@
 # Work in Progress
 
-[![Build Status](https://secure.travis-ci.org/RStankov/RDSActiveLabel.png)](http://travis-ci.org/RStankov/RDSActiveLabel)
+[![Build Status](https://secure.travis-ci.org/RStankov/RDSActionLabel.png)](http://travis-ci.org/RStankov/RDSActionLabel)
 
-# RDSActiveLabel
+# RDSActionLabel
 
 A UILabel subclass, that adds highlighting support to labels. Supporting hashtags, mentions, urls and having the ability to recognize custom texts. Written in Swift.
 
@@ -15,7 +15,7 @@ TODO: Cocoa pods instructions
 ## Usage
 
 ```swift
-let label = RDSActiveLabel()
+let label = RDSActionLabel()
 
 label.text = "Comment containing several #hash-1 #hash-2 from @username linking to http://example.com"
 
@@ -31,7 +31,7 @@ TODO: GIF DEMO
 #### Defining your own matchers
 
 ```swift
-let label = RDSActiveLabel()
+let label = RDSActionLabel()
 
 label.match("custom regular expression", color: color, selectedColor: selectedColor) { self.handle($0) }
 ```
@@ -54,4 +54,4 @@ gem install scan
 
 ## License
 
-**[MIT License](https://github.com/RStankov/RDSActiveLabel/blob/master/LICENSE.txt)**
+**[MIT License](https://github.com/RStankov/RDSActionLabel/blob/master/LICENSE.txt)**
