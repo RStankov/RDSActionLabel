@@ -8,7 +8,7 @@
 
 import XCTest
 
-@testable import RDSAnnotatedLabel
+@testable import RDSActiveLabel
 
 class RDSAnnotatedMatcherTests: XCTestCase {
 

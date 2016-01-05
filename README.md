@@ -1,8 +1,8 @@
 # Work in Progress
 
-[![Build Status](https://secure.travis-ci.org/RStankov/RDSAnnotatedLabel.png)](http://travis-ci.org/RStankov/RDSAnnotatedLabel)
+[![Build Status](https://secure.travis-ci.org/RStankov/RDSActiveLabel.png)](http://travis-ci.org/RStankov/RDSActiveLabel)
 
-# RDSAnnotatedLabel
+# RDSActiveLabel
 
 A UILabel subclass, that adds highlighting support to labels. Supporting hashtags, mentions, urls and having the ability to recognize custom texts. Written in Swift.
 
@@ -16,7 +16,7 @@ TODO: Cocoa pods instructions
 
 ```swift
 
-let label = RDSAnnotatedLabel()
+let label = RDSActiveLabel()
 
 label.text = "Comment containing several #hash-1 #hash-2 from @username linking to http://example.com/page"
 
@@ -44,4 +44,4 @@ TODO: All features
 
 ## License
 
-**[MIT License](https://github.com/RStankov/RDSAnnotatedLabel/blob/master/LICENSE.txt)**
+**[MIT License](https://github.com/RStankov/RDSActiveLabel/blob/master/LICENSE.txt)**

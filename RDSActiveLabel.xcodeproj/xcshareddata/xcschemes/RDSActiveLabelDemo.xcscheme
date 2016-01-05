@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F06D8A301C316FDD00C81AD5"
-               BuildableName = "RDSAnnotatedLabelDemo.app"
-               BlueprintName = "RDSAnnotatedLabelDemo"
-               ReferencedContainer = "container:RDSAnnotatedLabel.xcodeproj">
+               BlueprintIdentifier = "F04C29191C3C5F3000A60C8A"
+               BuildableName = "RDSActiveLabelDemo.app"
+               BlueprintName = "RDSActiveLabelDemo"
+               ReferencedContainer = "container:RDSActiveLabel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,34 +28,14 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F06D8A431C316FDD00C81AD5"
-               BuildableName = "RDSAnnotatedLabelDemoTests.xctest"
-               BlueprintName = "RDSAnnotatedLabelDemoTests"
-               ReferencedContainer = "container:RDSAnnotatedLabel.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F06D8A4E1C316FDD00C81AD5"
-               BuildableName = "RDSAnnotatedLabelDemoUITests.xctest"
-               BlueprintName = "RDSAnnotatedLabelDemoUITests"
-               ReferencedContainer = "container:RDSAnnotatedLabel.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F06D8A301C316FDD00C81AD5"
-            BuildableName = "RDSAnnotatedLabelDemo.app"
-            BlueprintName = "RDSAnnotatedLabelDemo"
-            ReferencedContainer = "container:RDSAnnotatedLabel.xcodeproj">
+            BlueprintIdentifier = "F04C29191C3C5F3000A60C8A"
+            BuildableName = "RDSActiveLabelDemo.app"
+            BlueprintName = "RDSActiveLabelDemo"
+            ReferencedContainer = "container:RDSActiveLabel.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F06D8A301C316FDD00C81AD5"
-            BuildableName = "RDSAnnotatedLabelDemo.app"
-            BlueprintName = "RDSAnnotatedLabelDemo"
-            ReferencedContainer = "container:RDSAnnotatedLabel.xcodeproj">
+            BlueprintIdentifier = "F04C29191C3C5F3000A60C8A"
+            BuildableName = "RDSActiveLabelDemo.app"
+            BlueprintName = "RDSActiveLabelDemo"
+            ReferencedContainer = "container:RDSActiveLabel.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F06D8A301C316FDD00C81AD5"
-            BuildableName = "RDSAnnotatedLabelDemo.app"
-            BlueprintName = "RDSAnnotatedLabelDemo"
-            ReferencedContainer = "container:RDSAnnotatedLabel.xcodeproj">
+            BlueprintIdentifier = "F04C29191C3C5F3000A60C8A"
+            BuildableName = "RDSActiveLabelDemo.app"
+            BlueprintName = "RDSActiveLabelDemo"
+            ReferencedContainer = "container:RDSActiveLabel.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

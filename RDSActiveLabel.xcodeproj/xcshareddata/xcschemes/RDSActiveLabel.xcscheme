@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F0C6E8B31C2ED1AC00AAE79C"
-               BuildableName = "RDSAnnotatedLabel.framework"
-               BlueprintName = "RDSAnnotatedLabel"
-               ReferencedContainer = "container:RDSAnnotatedLabel.xcodeproj">
+               BlueprintIdentifier = "F0A7749F1C3C5E8B00A729FC"
+               BuildableName = "RDSActiveLabel.framework"
+               BlueprintName = "RDSActiveLabel"
+               ReferencedContainer = "container:RDSActiveLabel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,20 +32,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F0C6E8BD1C2ED1AC00AAE79C"
-               BuildableName = "RDSAnnotatedLabelTests.xctest"
-               BlueprintName = "RDSAnnotatedLabelTests"
-               ReferencedContainer = "container:RDSAnnotatedLabel.xcodeproj">
+               BlueprintIdentifier = "F0A774A91C3C5E8B00A729FC"
+               BuildableName = "RDSActiveLabelTests.xctest"
+               BlueprintName = "RDSActiveLabelTests"
+               ReferencedContainer = "container:RDSActiveLabel.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F0C6E8B31C2ED1AC00AAE79C"
-            BuildableName = "RDSAnnotatedLabel.framework"
-            BlueprintName = "RDSAnnotatedLabel"
-            ReferencedContainer = "container:RDSAnnotatedLabel.xcodeproj">
+            BlueprintIdentifier = "F0A7749F1C3C5E8B00A729FC"
+            BuildableName = "RDSActiveLabel.framework"
+            BlueprintName = "RDSActiveLabel"
+            ReferencedContainer = "container:RDSActiveLabel.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -64,10 +64,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F0C6E8B31C2ED1AC00AAE79C"
-            BuildableName = "RDSAnnotatedLabel.framework"
-            BlueprintName = "RDSAnnotatedLabel"
-            ReferencedContainer = "container:RDSAnnotatedLabel.xcodeproj">
+            BlueprintIdentifier = "F0A7749F1C3C5E8B00A729FC"
+            BuildableName = "RDSActiveLabel.framework"
+            BlueprintName = "RDSActiveLabel"
+            ReferencedContainer = "container:RDSActiveLabel.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -82,10 +82,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F0C6E8B31C2ED1AC00AAE79C"
-            BuildableName = "RDSAnnotatedLabel.framework"
-            BlueprintName = "RDSAnnotatedLabel"
-            ReferencedContainer = "container:RDSAnnotatedLabel.xcodeproj">
+            BlueprintIdentifier = "F0A7749F1C3C5E8B00A729FC"
+            BuildableName = "RDSActiveLabel.framework"
+            BlueprintName = "RDSActiveLabel"
+            ReferencedContainer = "container:RDSActiveLabel.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

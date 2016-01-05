@@ -8,7 +8,7 @@
 
 import XCTest
 
-@testable import RDSAnnotatedLabel
+@testable import RDSActiveLabel
 
 class RDSAnnotatedTextTests: XCTestCase {
     private lazy var matcher = RDSAnnotatedMatcher(pattern: "test", color: UIColor.blackColor(), selectedColor: UIColor.redColor())

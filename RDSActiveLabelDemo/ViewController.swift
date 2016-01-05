@@ -1,13 +1,14 @@
 //
 //  ViewController.swift
-//  RDSAnnotatedLabelDemo
+//  RDSActiveLabelDemo
 //
-//  Created by Radoslav Stankov on 12/28/15.
-//  Copyright © 2015 Radoslav Stankov. All rights reserved.
+//  Created by Radoslav Stankov on 1/5/16.
+//  Copyright © 2016 Radoslav Stankov. All rights reserved.
 //
 
 import UIKit
-import RDSAnnotatedLabel
+
+import RDSActiveLabel
 
 class ViewController: UIViewController {
 
@@ -43,7 +44,4 @@ class ViewController: UIViewController {
 
         label.text = "\(label.text!) \n was tapped"
     }
-
-
 }
-

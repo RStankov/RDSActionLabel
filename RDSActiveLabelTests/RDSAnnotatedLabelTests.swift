@@ -9,7 +9,7 @@
 import XCTest
 import UIKit.UIGestureRecognizerSubclass
 
-@testable import RDSAnnotatedLabel
+@testable import RDSActiveLabel
 
 class RDSAnnotatedLabelTests: XCTestCase {
 
