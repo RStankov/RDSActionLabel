@@ -1,5 +1,7 @@
 # Work in Progress
 
+[![Build Status](https://secure.travis-ci.org/RStankov/RDSAnnotatedLabel.png)](http://travis-ci.org/RStankov/RDSAnnotatedLabel)
+
 # RDSAnnotatedLabel
 
 A UILabel subclass, that adds highlighting support to labels. Supporting hashtags, mentions, urls and having the ability to recognize custom texts. Written in Swift.
