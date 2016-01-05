@@ -1,7 +1,7 @@
 language: objective-c
 
-xcode_project: RDSAnnotatedLabel.xcodeproj
-xcode_scheme: RDSAnnotatedLabel
+xcode_project: RDSActiveLabel.xcodeproj
+xcode_scheme: RDSActiveLabel
 osx_image: xcode7.2
 
-script: xctool -workspace RDSAnnotatedLabel.xcworkspace -scheme RDSAnnotatedLabel clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+script: xctool -workspace RDSActiveLabel.xcworkspace -scheme RDSActiveLabel clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
