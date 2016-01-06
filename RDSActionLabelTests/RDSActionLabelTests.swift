@@ -158,7 +158,7 @@ class RDSActionLabelTests: XCTestCase {
         let label = buildLabel()
 
         label.textColor = UIColor.blackColor()
-        label.text = "http://example.com text"
+        label.text = " http://example.com text"
         label.matchUrl(color: UIColor.redColor())
 
         XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
@@ -169,7 +169,7 @@ class RDSActionLabelTests: XCTestCase {
         let label = buildLabel()
 
         label.textColor = UIColor.blackColor()
-        label.text = "@username text"
+        label.text = " @username text"
         label.matchUsername(color: UIColor.redColor())
 
         XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
@@ -180,7 +180,7 @@ class RDSActionLabelTests: XCTestCase {
         let label = buildLabel()
 
         label.textColor = UIColor.blackColor()
-        label.text = "#tag text"
+        label.text = " #tag text"
         label.matchHashtag(color: UIColor.redColor())
 
         XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())

@@ -11,14 +11,6 @@ import XCTest
 @testable import RDSActionLabel
 
 class RDSActionMatcherTests: XCTestCase {
-
-    func testMatcherIsMatching() {
-        let matcher = RDSActionMatcher(pattern: "[a-z]+", color: UIColor.blackColor())
-
-        XCTAssert(matcher.isMatching("text"))
-        XCTAssertFalse(matcher.isMatching("0987654321"))
-    }
-
     func testMatcherSelectedColor() {
         let matcher = RDSActionMatcher(pattern: "test", color: UIColor.blackColor())
         let matcher2 = RDSActionMatcher(pattern: "test", color: UIColor.blackColor(), selectedColor: UIColor.redColor())
@@ -52,5 +44,41 @@ class RDSActionMatcherTests: XCTestCase {
         text.handle()
 
         XCTAssertEqual(passedText, "test")
+    }
+
+    func testmatchWithPattern() {
+        let matcher = RDSActionMatcher(pattern: "[a-z]+", color: UIColor.blackColor())
+
+
+        XCTAssertEqual(matcher.match(" test "), [NSMakeRange(1, 4)]);
+    }
+
+    func testmatchWithMultiplematch() {
+        let matcher = RDSActionMatcher(pattern: "word", color: UIColor.blackColor())
+
+
+        XCTAssertEqual(matcher.match("word and word"), [NSMakeRange(0, 4), NSMakeRange(9, 4)]);
+    }
+
+    func testmatchWithMultilineString() {
+        let matcher = RDSActionMatcher(pattern: "test", color: UIColor.blackColor())
+
+
+        XCTAssertEqual(matcher.match("\n\n\n test"), [NSMakeRange(4, 4)]);
+    }
+
+    func testmatchWithNoResult() {
+        let matcher = RDSActionMatcher(pattern: "[0-9]+", color: UIColor.blackColor())
+
+
+        XCTAssertEqual(matcher.match("test"), []);
+    }
+
+    func testmatchWithUrlMatcher() {
+        let matcher = RDSActionMatcher(pattern: "(?i)https?://(?:www\\.)?\\S+(?:/|\\b)", color: UIColor.blackColor())
+
+
+        XCTAssertEqual(matcher.match(" http://example.com "), [NSMakeRange(1, 18)]);
+
     }
 }

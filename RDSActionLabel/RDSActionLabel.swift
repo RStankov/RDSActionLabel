@@ -51,11 +51,11 @@ import UIKit
     }
 
     public func matchUsername(color color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
-        match("^@\\w+", color: color ?? textColor!, selectedColor: selectedColor, handle: handle)
+        match("@\\w+", color: color ?? textColor!, selectedColor: selectedColor, handle: handle)
     }
 
     public func matchHashtag(color color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
-        match("^#\\w+", color: color ?? textColor!, selectedColor: selectedColor, handle: handle)
+        match("#[A-Z0-9_-]+", color: color ?? textColor!, selectedColor: selectedColor, handle: handle)
     }
 
     public override func drawTextInRect(rect: CGRect) {
@@ -120,10 +120,10 @@ import UIKit
         textRenderer.attributedString = attributedString
 
         let string = attributedString.string as NSString
-        for word in string.componentsSeparatedByString(" ") {
-            for matcher in matchers where matcher.isMatching(word) {
-                let text = RDSActionText(range: string.rangeOfString(word), string: word, matcher: matcher)
-                
+        for matcher in matchers {
+            for range in matcher.match(string as String) {
+                let text = RDSActionText(range: range, string: string.substringWithRange(range), matcher: matcher)
+
                 matchedTexts.append(text)
                 styleText(text)
             }

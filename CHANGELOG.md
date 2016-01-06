@@ -3,6 +3,7 @@
 ## Version 0.2.0 (Unreleased)
 
 * RDSActionLabel can be used from Objective-C
+* Support multi-word matchers
 
 ## Version 0.1.0
 

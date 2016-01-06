@@ -32,8 +32,15 @@ class RDSActionMatcher {
         }
     }
 
-    func isMatching(string: String) -> Bool {
-        let results = regexp.matchesInString(string, options: [], range: NSRange(location: 0, length: string.characters.count))
-        return results.count > 0
+    func match(string:String) -> [NSRange] {
+        var ranges = [NSRange]()
+
+        regexp.enumerateMatchesInString(string, options: [], range: NSRange(location: 0, length: string.characters.count)) { (result: NSTextCheckingResult?, _, _) in
+            if let result = result {
+                ranges.append(result.range)
+            }
+        }
+
+        return ranges
     }
 }
