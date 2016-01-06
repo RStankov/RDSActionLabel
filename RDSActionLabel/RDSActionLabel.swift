@@ -101,17 +101,17 @@ import UIKit
     private func textAtLocation(location: CGPoint) -> RDSActionText? {
         guard let index = textRenderer.indexForPoint(location) else { return nil }
 
-        for text in matchedTexts {
-            if text.inRange(index) {
-                return text
-            }
+        for text in matchedTexts where text.inRange(index) {
+            return text
         }
 
         return nil
     }
 
     private func updateUI() {
-        guard let _ = superview else { return }
+        if superview == nil {
+            return
+        }
 
         matchedTexts.removeAll()
 
@@ -121,13 +121,11 @@ import UIKit
 
         let string = attributedString.string as NSString
         for word in string.componentsSeparatedByString(" ") {
-            for matcher in matchers {
-                if (matcher.isMatching(word)) {
-                    let text = RDSActionText(range: string.rangeOfString(word), string: word, matcher: matcher)
-
-                    matchedTexts.append(text)
-                    styleText(text)
-                }
+            for matcher in matchers where matcher.isMatching(word) {
+                let text = RDSActionText(range: string.rangeOfString(word), string: word, matcher: matcher)
+                
+                matchedTexts.append(text)
+                styleText(text)
             }
         }
     }
