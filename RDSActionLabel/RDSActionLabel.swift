@@ -67,6 +67,7 @@ import UIKit
     }
 
     public override func didMoveToSuperview() {
+        super.didMoveToSuperview()
         updateUI()
     }
 
