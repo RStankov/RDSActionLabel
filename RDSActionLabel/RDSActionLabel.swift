@@ -41,20 +41,20 @@ import UIKit
         userInteractionEnabled = true
     }
 
-    public func match(pattern: String, color: UIColor? = nil, selectedColor: UIColor? = nil, handle: ((String) -> ())? = nil) {
+    public func match(pattern: String, color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
         matchers.append(RDSActionMatcher(pattern: pattern, color: color ?? textColor!, selectedColor: selectedColor, handle: handle));
         updateUI()
     }
 
-    public func matchUrl(color color: UIColor? = nil, selectedColor: UIColor? = nil, handle: ((String) -> ())? = nil) {
+    public func matchUrl(color color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
         match("(?i)https?://(?:www\\.)?\\S+(?:/|\\b)", color: color ?? textColor!, selectedColor: selectedColor, handle: handle)
     }
 
-    public func matchUsername(color color: UIColor? = nil, selectedColor: UIColor? = nil, handle: ((String) -> ())? = nil) {
+    public func matchUsername(color color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
         match("^@\\w+", color: color ?? textColor!, selectedColor: selectedColor, handle: handle)
     }
 
-    public func matchHashtag(color color: UIColor? = nil, selectedColor: UIColor? = nil, handle: ((String) -> ())? = nil) {
+    public func matchHashtag(color color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
         match("^#\\w+", color: color ?? textColor!, selectedColor: selectedColor, handle: handle)
     }
 

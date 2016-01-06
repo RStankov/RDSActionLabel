@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias RDSActionHandler = ((String) -> ())
+public typealias RDSActionHandler = ((String) -> ())
 
 let RDSActionNoopHandler: RDSActionHandler = { (arg: String) in }
 
