@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class RDSActionLabel: UILabel {
+@objc public class RDSActionLabel: UILabel {
     override public var text: String? { didSet { updateUI() } }
     override public var attributedText: NSAttributedString? { didSet { updateUI() } }
     override public var font: UIFont! { didSet { updateUI() } }
