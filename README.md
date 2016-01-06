@@ -9,7 +9,9 @@ A UILabel subclass, that adds highlighting support to labels. Supporting hashtag
 ## Installation
 
 ```
-TODO: Cocoa pods instructions
+use_frameworks!
+
+pod 'RDSActionLabel'
 ```
 
 ## Usage
@@ -22,10 +24,6 @@ label.text = "Comment containing several #hash-1 #hash-2 from @username linking 
 label.matchUsername(color: mentionColor, selectedColor: mentionSelectedColor) { self.selectUser($0) }
 label.matchHashtag(color: hashtagColor, selectedColor: hashtagSelectedColor) { self.selectHash($0) }
 label.matchUrl(color: URLColor, selectedColor: URLSelectedColor) { self.selectUrl($0) }
-```
-
-```
-TODO: GIF DEMO
 ```
 
 #### Defining your own matchers
