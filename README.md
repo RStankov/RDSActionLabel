@@ -36,6 +36,19 @@ let label = RDSActionLabel()
 label.match("custom regular expression", color: color, selectedColor: selectedColor) { self.handle($0) }
 ```
 
+#### Use in Objective-C
+
+```objective-c
+#import "RDSActionLabel-Swift.h"
+
+RDSActionLabel *label = [RDSActionLabel new]
+
+// you pass `nil` for using the default values
+[self.legalLabel matchUrlWithColor:urlColor selectedColor:selectedUrlColor handle:^(NSString * _Nonnull urlString) {
+  [self handleUrl:urlString];
+}];
+```
+
 ### Tests
 
 ```
