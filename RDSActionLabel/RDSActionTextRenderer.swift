@@ -13,6 +13,17 @@ class RDSActionTextRenderer {
     private lazy var textContainer = NSTextContainer()
     private lazy var layoutManager = NSLayoutManager()
 
+    class func attributedStringFrom(label: UILabel) -> NSAttributedString {
+        let paragraphStyle = NSMutableParagraphStyle()
+
+        paragraphStyle.lineBreakMode = label.lineBreakMode
+        paragraphStyle.alignment = label.textAlignment
+
+        let attributedString = NSAttributedString(string: label.text ?? "", attributes: [NSFontAttributeName: label.font!, NSForegroundColorAttributeName: label.textColor, NSParagraphStyleAttributeName: paragraphStyle])
+
+        return attributedString
+    }
+
     var attributedString: NSAttributedString {
         get {
             return textStorage

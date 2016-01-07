@@ -14,6 +14,8 @@ import UIKit
     override public var attributedText: NSAttributedString? { didSet { updateUI() } }
     override public var font: UIFont! { didSet { updateUI() } }
     override public var textColor: UIColor! { didSet { updateUI() } }
+    override public var textAlignment: NSTextAlignment { didSet { updateUI() } }
+    override public var lineBreakMode: NSLineBreakMode { didSet { updateUI() } }
 
     lazy var textRenderer = RDSActionTextRenderer()
 
@@ -37,6 +39,8 @@ import UIKit
         touchRecognizer.minimumPressDuration = 0.00001
         touchRecognizer.delegate = self
         addGestureRecognizer(touchRecognizer)
+
+        lineBreakMode = .ByWordWrapping
 
         userInteractionEnabled = true
     }
@@ -115,11 +119,10 @@ import UIKit
 
         matchedTexts.removeAll()
 
-        let attributedString = attributedText ?? NSAttributedString(string: text ?? "", attributes: [NSFontAttributeName: font!, NSForegroundColorAttributeName: textColor])
+        textRenderer.attributedString = RDSActionTextRenderer.attributedStringFrom(self)
 
-        textRenderer.attributedString = attributedString
+        let string = textRenderer.attributedString.string as NSString
 
-        let string = attributedString.string as NSString
         for matcher in matchers {
             for range in matcher.match(string as String) {
                 let text = RDSActionText(range: range, string: string.substringWithRange(range), matcher: matcher)

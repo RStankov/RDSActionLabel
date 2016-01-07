@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F076A3481C3EEFC2000119E0 /* RDSActionTextRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F076A3471C3EEFC2000119E0 /* RDSActionTextRendererTests.swift */; };
 		F0BC2F231C3C799500F68A0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC2F221C3C799500F68A0A /* AppDelegate.swift */; };
 		F0BC2F281C3C799500F68A0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0BC2F261C3C799500F68A0A /* Main.storyboard */; };
 		F0BC2F2A1C3C799500F68A0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0BC2F291C3C799500F68A0A /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F076A3471C3EEFC2000119E0 /* RDSActionTextRendererTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSActionTextRendererTests.swift; sourceTree = "<group>"; };
 		F0BC2F201C3C799500F68A0A /* RDSActionLabelDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RDSActionLabelDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0BC2F221C3C799500F68A0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0BC2F271C3C799500F68A0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				F0BC2F481C3C79C300F68A0A /* RDSActionLabelTests.swift */,
 				F0BC2F491C3C79C300F68A0A /* RDSActionMatcherTests.swift */,
 				F0BC2F4A1C3C79C300F68A0A /* RDSActionTextTests.swift */,
+				F076A3471C3EEFC2000119E0 /* RDSActionTextRendererTests.swift */,
 				F0BC49F51C3C7854001E34E4 /* Info.plist */,
 			);
 			path = RDSActionLabelTests;
@@ -299,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0BC2F4D1C3C79C300F68A0A /* RDSActionTextTests.swift in Sources */,
+				F076A3481C3EEFC2000119E0 /* RDSActionTextRendererTests.swift in Sources */,
 				F0BC2F4C1C3C79C300F68A0A /* RDSActionMatcherTests.swift in Sources */,
 				F0BC2F4B1C3C79C300F68A0A /* RDSActionLabelTests.swift in Sources */,
 			);
