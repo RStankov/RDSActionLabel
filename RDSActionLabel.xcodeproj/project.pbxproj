@@ -17,7 +17,7 @@
 		F0BC2F471C3C79B800F68A0A /* RDSActionTextRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC2F431C3C79B800F68A0A /* RDSActionTextRenderer.swift */; };
 		F0BC2F4B1C3C79C300F68A0A /* RDSActionLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC2F481C3C79C300F68A0A /* RDSActionLabelTests.swift */; };
 		F0BC2F4C1C3C79C300F68A0A /* RDSActionMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC2F491C3C79C300F68A0A /* RDSActionMatcherTests.swift */; };
-		F0BC2F4D1C3C79C300F68A0A /* RDSActionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC2F4A1C3C79C300F68A0A /* RDSActionText.swift */; };
+		F0BC2F4D1C3C79C300F68A0A /* RDSActionTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC2F4A1C3C79C300F68A0A /* RDSActionTextTests.swift */; };
 		F0BC2F4F1C3C79D700F68A0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BC2F4E1C3C79D700F68A0A /* ViewController.swift */; };
 		F0BC49E81C3C7854001E34E4 /* RDSActionLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = F0BC49E71C3C7854001E34E4 /* RDSActionLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F0BC49EF1C3C7854001E34E4 /* RDSActionLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0BC49E41C3C7854001E34E4 /* RDSActionLabel.framework */; };
@@ -46,7 +46,7 @@
 		F0BC2F431C3C79B800F68A0A /* RDSActionTextRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSActionTextRenderer.swift; sourceTree = "<group>"; };
 		F0BC2F481C3C79C300F68A0A /* RDSActionLabelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSActionLabelTests.swift; sourceTree = "<group>"; };
 		F0BC2F491C3C79C300F68A0A /* RDSActionMatcherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSActionMatcherTests.swift; sourceTree = "<group>"; };
-		F0BC2F4A1C3C79C300F68A0A /* RDSActionText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSActionText.swift; sourceTree = "<group>"; };
+		F0BC2F4A1C3C79C300F68A0A /* RDSActionTextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDSActionTextTests.swift; sourceTree = "<group>"; };
 		F0BC2F4E1C3C79D700F68A0A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F0BC49E41C3C7854001E34E4 /* RDSActionLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RDSActionLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0BC49E71C3C7854001E34E4 /* RDSActionLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RDSActionLabel.h; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 			children = (
 				F0BC2F481C3C79C300F68A0A /* RDSActionLabelTests.swift */,
 				F0BC2F491C3C79C300F68A0A /* RDSActionMatcherTests.swift */,
-				F0BC2F4A1C3C79C300F68A0A /* RDSActionText.swift */,
+				F0BC2F4A1C3C79C300F68A0A /* RDSActionTextTests.swift */,
 				F0BC49F51C3C7854001E34E4 /* Info.plist */,
 			);
 			path = RDSActionLabelTests;
@@ -298,7 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0BC2F4D1C3C79C300F68A0A /* RDSActionText.swift in Sources */,
+				F0BC2F4D1C3C79C300F68A0A /* RDSActionTextTests.swift in Sources */,
 				F0BC2F4C1C3C79C300F68A0A /* RDSActionMatcherTests.swift in Sources */,
 				F0BC2F4B1C3C79C300F68A0A /* RDSActionLabelTests.swift in Sources */,
 			);
