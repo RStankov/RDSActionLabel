@@ -26,6 +26,8 @@ label.matchHashtag(color: hashtagColor, selectedColor: hashtagSelectedColor) { s
 label.matchUrl(color: URLColor, selectedColor: URLSelectedColor) { self.selectUrl($0) }
 ```
 
+![Demo](https://raw.githubusercontent.com/RStankov/RDSActionLabel/master/demo.gif)
+
 #### Defining your own matchers
 
 ```swift
