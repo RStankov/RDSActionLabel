@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 0.2.0 (Unreleased)
+## Version 0.2.0
 
 * RDSActionLabel can be used from Objective-C
 * Support multi-word matchers
