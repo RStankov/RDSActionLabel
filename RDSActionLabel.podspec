@@ -8,13 +8,13 @@
 
 Pod::Spec.new do |s|
   s.name          = "RDSActionLabel"
-  s.version       = "0.1.0"
+  s.version       = "0.2.0"
   s.summary       = "Custom text highlighting in UILabel."
   s.description   = "A UILabel subclass, that adds highlighting support to labels. Supporting hashtags, mentions, urls and having the ability to recognize custom texts. Written in Swift."
   s.homepage      = "https://github.com/RStankov/RDSActionLabel"
   s.license       = { type: 'MIT', file: 'LICENSE.txt' }
   s.author        = { "Radoslav Stankov" => "rstankov@gmail.com" }
   s.platform      = :ios, '8.0'
-  s.source        = { git: "https://github.com/RStankov/RDSActionLabel.git", tag: "v#{s.version}" }
+  s.source        = { git: "https://github.com/RStankov/RDSActionLabel.git", tag: s.version }
   s.source_files  = "RDSActionLabel/*.{swift}"
 end
