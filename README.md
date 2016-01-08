@@ -26,7 +26,9 @@ label.matchHashtag(color: hashtagColor, selectedColor: hashtagSelectedColor) { s
 label.matchUrl(color: URLColor, selectedColor: URLSelectedColor) { self.selectUrl($0) }
 ```
 
-![Demo](https://raw.githubusercontent.com/RStankov/RDSActionLabel/master/demo.gif)
+#### Demo
+
+<a href="https://github.com/RStankov/RDSActionLabel/tree/master/RDSActionLabelDemo"><img src="https://raw.githubusercontent.com/RStankov/RDSActionLabel/master/demo.gif" /></a>
 
 #### Defining your own matchers
 
@@ -43,7 +45,7 @@ label.match("custom regular expression", color: color, selectedColor: selectedCo
 
 RDSActionLabel *label = [RDSActionLabel new]
 
-// you pass `nil` for using the default values
+// you can pass `nil` for using the default values
 [self.legalLabel matchUrlWithColor:urlColor selectedColor:selectedUrlColor handle:^(NSString * _Nonnull urlString) {
   [self handleUrl:urlString];
 }];
