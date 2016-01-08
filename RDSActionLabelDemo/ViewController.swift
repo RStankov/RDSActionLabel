@@ -17,31 +17,32 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        label.text = "Word \n #hash-1 \n #hash-2 \n @username \n http://example.com \n other text"
+        label.text = "Example comment addresed to @username about http://example.com #hash-1 #hash-2 \n\n custom text \n\n tap recordings: \n"
         label.textColor = UIColor.grayColor()
-        label.font = UIFont.boldSystemFontOfSize(15)
+        label.font = UIFont.boldSystemFontOfSize(12)
 
         let hashtagColor = UIColor.redColor()
-        let hashtagSelectedColor = UIColor.purpleColor()
-        let mentionColor = UIColor.greenColor()
-        let mentionSelectedColor = UIColor.darkGrayColor()
+        let mentionColor = UIColor.magentaColor()
         let URLColor = UIColor.blueColor()
-        let URLSelectedColor = UIColor.darkTextColor()
+        let selectedColor = UIColor.purpleColor()
 
-        label.match("Word") { self.alert("Custom", message: $0) }
-        label.matchUsername(color: mentionColor, selectedColor: mentionSelectedColor) { self.alert("Mention", message: $0) }
-        label.matchHashtag(color: hashtagColor, selectedColor: hashtagSelectedColor) { self.alert("Hashtag", message: $0) }
-        label.matchUrl(color: URLColor, selectedColor: URLSelectedColor) { self.alert("URL", message: $0) }
+        label.match("custom text", handle: alert("Custom"))
+        label.matchUsername(color: mentionColor, selectedColor: selectedColor, handle: alert("Mention"))
+        label.matchHashtag(color: hashtagColor, selectedColor: selectedColor, handle: alert("Hashtag"))
+        label.matchUrl(color: URLColor, selectedColor: selectedColor, handle: alert("Url"))
 
         label.frame = CGRect(x: 40, y: 40, width: view.frame.width - 80, height: view.frame.height - 80)
+
         view.addSubview(label)
     }
 
-    func alert(title: String, message: String) {
-        let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        vc.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
-        presentViewController(vc, animated: true, completion: nil)
+    func alert(title: String)(message: String) {
+        label.text = "\(label.text!) \n \"\(message)\" was tapped"
 
-        label.text = "\(label.text!) \n was tapped"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+
+        alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+
+        presentViewController(alert, animated: true, completion: nil)
     }
 }
