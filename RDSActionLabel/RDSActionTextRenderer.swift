@@ -19,9 +19,15 @@ class RDSActionTextRenderer {
         paragraphStyle.lineBreakMode = label.lineBreakMode
         paragraphStyle.alignment = label.textAlignment
 
-        let attributedString = NSAttributedString(string: label.text ?? "", attributes: [NSFontAttributeName: label.font!, NSForegroundColorAttributeName: label.textColor, NSParagraphStyleAttributeName: paragraphStyle])
+        if let attributedString = label.attributedText {
+            let mutableString = attributedString.mutableCopy() as! NSMutableAttributedString
 
-        return attributedString
+            mutableString.addAttributes([NSParagraphStyleAttributeName: paragraphStyle], range: NSMakeRange(0, mutableString.string.characters.count))
+
+            return attributedString
+        }
+
+        return NSAttributedString(string: label.text ?? "", attributes: [NSFontAttributeName: label.font!, NSForegroundColorAttributeName: label.textColor, NSParagraphStyleAttributeName: paragraphStyle])
     }
 
     var attributedString: NSAttributedString {
