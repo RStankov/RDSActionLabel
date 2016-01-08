@@ -1,6 +1,7 @@
 # Work in Progress
 
 [![Build Status](https://secure.travis-ci.org/RStankov/RDSActionLabel.png)](http://travis-ci.org/RStankov/RDSActionLabel)
+[![Pod Version](https://img.shields.io/cocoapods/v/RDSActionLabel.svg?style=flat)](https://cocoapods.org/pods/RDSActionLabel)
 
 # RDSActionLabel
 
