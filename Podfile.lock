@@ -1,1 +1,10 @@
+PODS:
+  - RDSActionLabel (0.2.0)
+
+DEPENDENCIES:
+  - RDSActionLabel
+
+SPEC CHECKSUMS:
+  RDSActionLabel: abdff2cab36749c84397ac49d07427d94f144596
+
 COCOAPODS: 0.39.0
