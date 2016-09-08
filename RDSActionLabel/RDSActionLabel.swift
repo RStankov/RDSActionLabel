@@ -100,12 +100,7 @@ import UIKit
 
     private func textAtLocation(location: CGPoint) -> RDSActionText? {
         guard let index = textRenderer.indexForPoint(location) else { return nil }
-
-        for text in matchedTexts where text.inRange(index) {
-            return text
-        }
-
-        return nil
+        return matchedTexts.filter{ $0.inRange(index) }.first
     }
 
     private func updateUI() {
@@ -147,5 +142,9 @@ extension RDSActionLabel: UIGestureRecognizerDelegate {
 
     public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailByGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+
+    public override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return textAtLocation(gestureRecognizer.locationInView(self)) != nil
     }
 }
