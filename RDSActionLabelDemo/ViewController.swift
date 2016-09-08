@@ -8,11 +8,12 @@
 
 import UIKit
 
+
 import RDSActionLabel
 
 class ViewController: UIViewController {
 
-    private lazy var label:RDSActionLabel = RDSActionLabel()
+    private let label = RDSActionLabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,20 +27,20 @@ class ViewController: UIViewController {
         let URLColor = UIColor.blueColor()
         let selectedColor = UIColor.purpleColor()
 
-        label.match("custom text", handle: alert("Custom"))
-        label.matchUsername(color: mentionColor, selectedColor: selectedColor, handle: alert("Mention"))
-        label.matchHashtag(color: hashtagColor, selectedColor: selectedColor, handle: alert("Hashtag"))
-        label.matchUrl(color: URLColor, selectedColor: selectedColor, handle: alert("Url"))
+        label.match("custom text", handle: { self.alert("Custom", message: $0) })
+        label.matchUsername(color: mentionColor, selectedColor: selectedColor, handle: { self.alert("Mention", message: $0) })
+        label.matchHashtag(color: hashtagColor, selectedColor: selectedColor, handle: { self.alert("Hashtag", message: $0) })
+        label.matchUrl(color: URLColor, selectedColor: selectedColor, handle: { self.alert("Url", message: $0) })
 
         label.frame = CGRect(x: 40, y: 40, width: view.frame.width - 80, height: view.frame.height - 80)
 
         view.addSubview(label)
     }
 
-    func alert(title: String)(message: String) {
+    func alert(title: String, message: String) {
         label.text = "\(label.text!) \n \"\(message)\" was tapped"
 
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 
         alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
 
