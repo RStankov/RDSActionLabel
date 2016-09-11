@@ -1,15 +1,18 @@
 platform :ios, '9.0'
-use_frameworks!
 
 target 'RDSActionLabel' do
+  use_frameworks!
+
   xcodeproj 'RDSActionLabel.xcodeproj'
 
-  link_with 'RDSActionLabelDemo', 'RDSActionLabelTests'
-
   pod 'RDSActionLabel'
-end
 
-target 'RDSActionLabelTests' do
+  target 'RDSActionLabelDemo' do
+    inherit! :search_paths
+  end
 
+  target 'RDSActionLabelTests' do
+    inherit! :search_paths
+  end
 end
 

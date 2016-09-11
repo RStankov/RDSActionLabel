@@ -6,7 +6,6 @@
 //  Copyright © 2015 Radoslav Stankov. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 @objc public class RDSActionLabel: UILabel {
@@ -35,7 +34,7 @@ import UIKit
     }
 
     private func commonInit() {
-        let touchRecognizer = UILongPressGestureRecognizer(target: self, action: "onTouch:")
+        let touchRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(RDSActionLabel.onTouch(_:)))
         touchRecognizer.minimumPressDuration = 0.00001
         touchRecognizer.delegate = self
         addGestureRecognizer(touchRecognizer)
@@ -90,26 +89,18 @@ import UIKit
         switch gesture.state {
             case .Began, .Changed:
                 selectedText = textAtLocation(gesture.locationInView(self))
-                break
 
             case .Cancelled, .Ended:
                 selectedText?.handle()
                 selectedText = nil
-                break
 
-            default:
-                break
+            default: break
         }
     }
 
     private func textAtLocation(location: CGPoint) -> RDSActionText? {
         guard let index = textRenderer.indexForPoint(location) else { return nil }
-
-        for text in matchedTexts where text.inRange(index) {
-            return text
-        }
-
-        return nil
+        return matchedTexts.filter{ $0.inRange(index) }.first
     }
 
     private func updateUI() {
@@ -123,13 +114,13 @@ import UIKit
 
         let string = textRenderer.attributedString.string as NSString
 
-        for matcher in matchers {
-            for range in matcher.match(string as String) {
+        matchers.forEach { (matcher) in
+            matcher.match(string as String).forEach({ (range) in
                 let text = RDSActionText(range: range, string: string.substringWithRange(range), matcher: matcher)
 
                 matchedTexts.append(text)
                 styleText(text)
-            }
+            })
         }
     }
 
@@ -151,5 +142,9 @@ extension RDSActionLabel: UIGestureRecognizerDelegate {
 
     public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailByGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+
+    public override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return textAtLocation(gestureRecognizer.locationInView(self)) != nil
     }
 }
