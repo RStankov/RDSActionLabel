@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name          = "RDSActionLabel"
-  s.version       = "0.2.0"
+  s.version       = "0.2.1"
   s.summary       = "Custom text highlighting in UILabel."
   s.description   = "A UILabel subclass, that adds highlighting support to labels. Supporting hashtags, mentions, urls and having the ability to recognize custom texts. Written in Swift."
   s.homepage      = "https://github.com/RStankov/RDSActionLabel"
