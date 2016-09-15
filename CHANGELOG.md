@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.0.0
+
+* Swift 3.0 support (@devladinci, @rstankov)
+
 ## Version 0.2.1
 
 * Update to Swift 2.3 (@devladinci)
