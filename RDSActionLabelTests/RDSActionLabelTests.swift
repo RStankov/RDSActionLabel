@@ -25,74 +25,74 @@ class RDSActionLabelTests: XCTestCase {
     func testRenderWhenSetMatcher() {
         let label = buildLabel()
 
-        label.textColor = UIColor.blackColor()
+        label.textColor = UIColor.black
         label.text = "text"
 
-        XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
+        XCTAssertEqual(label.colorForText(text: "text"), UIColor.black)
 
-        label.match("text", color: UIColor.redColor())
+        label.match("text", color: UIColor.red)
 
-        XCTAssertEqual(label.colorForText("text"), UIColor.redColor())
+        XCTAssertEqual(label.colorForText(text: "text"), UIColor.red)
     }
 
     func testRenderWhenSetTextColor() {
         let label = buildLabel()
 
-        label.textColor = UIColor.blackColor()
+        label.textColor = UIColor.black
         label.text = "text"
 
-        XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
+        XCTAssertEqual(label.colorForText(text: "text"), UIColor.black)
 
-        label.textColor = UIColor.redColor()
+        label.textColor = UIColor.red
 
-        XCTAssertEqual(label.colorForText("text"), UIColor.redColor())
+        XCTAssertEqual(label.colorForText(text: "text"), UIColor.red)
 
     }
 
     func testRenderWhenSetText() {
         let label = buildLabel()
 
-        label.textColor = UIColor.blackColor()
+        label.textColor = UIColor.black
         label.text = "text"
 
-        label.match("new-text", color: UIColor.redColor())
+        label.match("new-text", color: UIColor.red)
 
-        XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
+        XCTAssertEqual(label.colorForText(text: "text"), UIColor.black)
 
         label.text = "new-text"
 
-        XCTAssertEqual(label.colorForText("new-text"), UIColor.redColor())
+        XCTAssertEqual(label.colorForText(text: "new-text"), UIColor.red)
 
     }
 
     func testRenderWhenSetFont() {
         let label = buildLabel()
 
-        label.textColor = UIColor.blackColor()
+        label.textColor = UIColor.black
         label.text = "text"
-        label.font = UIFont.boldSystemFontOfSize(20)
-        label.match("text", color: UIColor.redColor())
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.match("text", color: UIColor.red)
 
-        XCTAssertEqual(label.fontForText("text"), label.font)
+        XCTAssertEqual(label.fontForText(text: "text"), label.font)
 
-        label.font = UIFont.boldSystemFontOfSize(10)
+        label.font = UIFont.boldSystemFont(ofSize: 10)
 
-        XCTAssertEqual(label.fontForText("text"), label.font)
+        XCTAssertEqual(label.fontForText(text: "text"), label.font)
     }
 
     func testRenderWhenSetAttributedText() {
         let label = buildLabel()
 
-        let font = UIFont.boldSystemFontOfSize(20)
+        let font = UIFont.boldSystemFont(ofSize: 20)
 
-        label.attributedText = NSAttributedString(string: "label text", attributes: [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.blackColor()])
-        label.match("text", color: UIColor.redColor())
+        label.attributedText = NSAttributedString(string: "label text", attributes: [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.black])
+        label.match("text", color: UIColor.red)
 
-        XCTAssertEqual(label.fontForText("label"), font)
-        XCTAssertEqual(label.fontForText("text"), font)
+        XCTAssertEqual(label.fontForText(text: "label"), font)
+        XCTAssertEqual(label.fontForText(text: "text"), font)
 
-        XCTAssertEqual(label.colorForText("label"), UIColor.blackColor())
-        XCTAssertEqual(label.colorForText("text"), UIColor.redColor())
+        XCTAssertEqual(label.colorForText(text: "label"), UIColor.black)
+        XCTAssertEqual(label.colorForText(text: "text"), UIColor.red)
     }
 
     func testTappingOnMatchedText() {
@@ -101,18 +101,17 @@ class RDSActionLabelTests: XCTestCase {
         let label = buildLabel()
 
         label.text = "tapped"
-        label.match("tapped", color: UIColor.redColor()) { passedText = $0 }
+        label.match("tapped", color: UIColor.red) { passedText = $0 }
 
         let gesture = TestGesture()
 
+        gesture.simulateState(state: .began, locationInView: CGPoint(x: 2, y: 3))
 
-        gesture.simulateState(.Began, locationInView: CGPointMake(2, 3))
+        label.onTouch(gesture: gesture)
 
-        label.onTouch(gesture)
+        gesture.simulateState(state: .ended)
 
-        gesture.simulateState(.Ended)
-
-        label.onTouch(gesture)
+        label.onTouch(gesture: gesture)
 
         XCTAssertEqual(passedText, "tapped");
     }
@@ -123,18 +122,18 @@ class RDSActionLabelTests: XCTestCase {
         let label = buildLabel()
 
         label.text = "tapped"
-        label.match("tapped", color: UIColor.redColor()) { passedText = $0 }
+        label.match("tapped", color: UIColor.red) { passedText = $0 }
 
         let gesture = TestGesture()
 
 
-        gesture.simulateState(.Began, locationInView: CGPointMake(2000, 3000))
+        gesture.simulateState(state: .began, locationInView: CGPoint(x: 2000, y: 3000))
 
-        label.onTouch(gesture)
+        label.onTouch(gesture: gesture)
 
-        gesture.simulateState(.Ended)
+        gesture.simulateState(state: .ended)
 
-        label.onTouch(gesture)
+        label.onTouch(gesture: gesture)
 
         XCTAssertEqual(passedText, "not called");
     }
@@ -143,56 +142,56 @@ class RDSActionLabelTests: XCTestCase {
         let label = buildLabel()
 
         label.text = "text"
-        label.match("text", color: UIColor.blackColor(), selectedColor: UIColor.redColor())
+        label.match("text", color: UIColor.black, selectedColor: UIColor.red)
 
         let gesture = TestGesture()
 
-        gesture.simulateState(.Began, locationInView: CGPointMake(2, 3))
+        gesture.simulateState(state: .began, locationInView: CGPoint(x: 2, y: 3))
 
-        label.onTouch(gesture)
+        label.onTouch(gesture: gesture)
 
-        XCTAssertEqual(label.colorForText("text"), UIColor.redColor())
+        XCTAssertEqual(label.colorForText(text: "text"), UIColor.red)
     }
 
     func testMatchURL() {
         let label = buildLabel()
 
-        label.textColor = UIColor.blackColor()
+        label.textColor = UIColor.black
         label.text = " http://example.com text"
-        label.matchUrl(color: UIColor.redColor())
+        label.matchUrl(color: UIColor.red)
 
-        XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
-        XCTAssertEqual(label.colorForText("http://example.com"), UIColor.redColor())
+        XCTAssertEqual(label.colorForText(text: "text"), UIColor.black)
+        XCTAssertEqual(label.colorForText(text: "http://example.com"), UIColor.red)
     }
 
     func testMatchUsername() {
         let label = buildLabel()
 
-        label.textColor = UIColor.blackColor()
+        label.textColor = UIColor.black
         label.text = " @username text"
-        label.matchUsername(color: UIColor.redColor())
+        label.matchUsername(color: UIColor.red)
 
-        XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
-        XCTAssertEqual(label.colorForText("@username"), UIColor.redColor())
+        XCTAssertEqual(label.colorForText(text: "text"), UIColor.black)
+        XCTAssertEqual(label.colorForText(text: "@username"), UIColor.red)
     }
 
     func testMatchHashtag() {
         let label = buildLabel()
 
-        label.textColor = UIColor.blackColor()
+        label.textColor = UIColor.black
         label.text = " #tag text"
-        label.matchHashtag(color: UIColor.redColor())
+        label.matchHashtag(color: UIColor.red)
 
-        XCTAssertEqual(label.colorForText("text"), UIColor.blackColor())
-        XCTAssertEqual(label.colorForText("#tag"), UIColor.redColor())
+        XCTAssertEqual(label.colorForText(text: "text"), UIColor.black)
+        XCTAssertEqual(label.colorForText(text: "#tag"), UIColor.red)
     }
 }
 
 class TestGesture : UILongPressGestureRecognizer {
-    private var simulatedLocationInView = CGPointZero
+    private var simulatedLocationInView = CGPoint.zero
 
     func simulateState(state: UIGestureRecognizerState) {
-        simulateState(state, locationInView: CGPointZero)
+        simulateState(state: state, locationInView: CGPoint.zero)
     }
 
     func simulateState(state: UIGestureRecognizerState, locationInView: CGPoint) {
@@ -200,7 +199,7 @@ class TestGesture : UILongPressGestureRecognizer {
         self.simulatedLocationInView = locationInView
     }
 
-    override func locationInView(view: UIView?) -> CGPoint {
+    override func location(in view: UIView?) -> CGPoint {
         return simulatedLocationInView
     }
 }
@@ -209,16 +208,16 @@ extension RDSActionLabel {
     func colorForText(text:String) -> UIColor {
         var range = NSRange(location: 0, length: 0)
         let attr  = textRenderer.attributedString
-        let index = (attr.string as NSString).rangeOfString(text).location
+        let index = (attr.string as NSString).range(of: text).location
 
-        return attr.attribute(NSForegroundColorAttributeName, atIndex: index, effectiveRange: &range) as! UIColor
+        return attr.attribute(NSForegroundColorAttributeName, at: index, effectiveRange: &range) as! UIColor
     }
 
     func fontForText(text:String) -> UIFont {
         var range = NSRange(location: 0, length: 0)
         let attr  = textRenderer.attributedString
-        let index = (attr.string as NSString).rangeOfString(text).location
+        let index = (attr.string as NSString).range(of: text).location
 
-        return attr.attribute(NSFontAttributeName, atIndex: index, effectiveRange: &range) as! UIFont
+        return attr.attribute(NSFontAttributeName, at: index, effectiveRange: &range) as! UIFont
     }
 }

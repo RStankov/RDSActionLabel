@@ -10,7 +10,7 @@ import Foundation
 
 class RDSActionText : Equatable {
     private let matcher: RDSActionMatcher;
-    private let string: String
+    private(set) var string: String
 
     let range: NSRange
 
