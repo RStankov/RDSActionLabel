@@ -16,7 +16,7 @@ class RDSActionTextRendererTests: XCTestCase {
 
         label.text = "text"
 
-        let attributedString = RDSActionTextRenderer.attributedStringFrom(label)
+        let attributedString = RDSActionTextRenderer.attributedStringFrom(label: label)
         let attributes = attributedString.attributes()
 
         XCTAssertEqual(attributedString.string, label.text)
@@ -28,10 +28,10 @@ class RDSActionTextRendererTests: XCTestCase {
         let label = UILabel()
 
         label.text = "text"
-        label.lineBreakMode = .ByWordWrapping
-        label.textAlignment = .Center
+        label.lineBreakMode = .byWordWrapping
+        label.textAlignment = .center
 
-        let attributes = RDSActionTextRenderer.attributedStringFrom(label).attributes()
+        let attributes = RDSActionTextRenderer.attributedStringFrom(label: label).attributes()
 
         let style = attributes[NSParagraphStyleAttributeName] as! NSMutableParagraphStyle
 
@@ -40,9 +40,9 @@ class RDSActionTextRendererTests: XCTestCase {
     }
 
     func testAttributedStringFromLabelAttributedText() {
-        let font = UIFont.systemFontOfSize(10)
-        let firstColor = UIColor.redColor()
-        let secondColor = UIColor.blueColor()
+        let font = UIFont.systemFont(ofSize: 10)
+        let firstColor = UIColor.red
+        let secondColor = UIColor.blue
         let range = NSMakeRange(2, 2);
 
         let attributedText = NSMutableAttributedString(string: "test", attributes: [NSFontAttributeName: font, NSForegroundColorAttributeName: firstColor])
@@ -52,18 +52,18 @@ class RDSActionTextRendererTests: XCTestCase {
         let label = UILabel()
         label.attributedText = attributedText
 
-        let attributedString = RDSActionTextRenderer.attributedStringFrom(label)
+        let attributedString = RDSActionTextRenderer.attributedStringFrom(label: label)
 
         XCTAssertEqual(attributedString.string, "test")
         XCTAssertEqual(attributedString.attributes()[NSFontAttributeName] as? UIFont, font)
         XCTAssertEqual(attributedString.attributes()[NSForegroundColorAttributeName] as? UIColor, firstColor)
-        XCTAssertEqual(attributedString.attributes(range)[NSForegroundColorAttributeName] as? UIColor, secondColor)
+        XCTAssertEqual(attributedString.attributes(inRange: range)[NSForegroundColorAttributeName] as? UIColor, secondColor)
     }
 }
 
 extension NSAttributedString {
-    func attributes(inRange:NSRange? = nil) -> [String:AnyObject] {
+    func attributes(inRange:NSRange? = nil) -> [String:Any] {
         var range = inRange ?? NSRange(location: 0, length: 0)
-        return string.characters.count == 0 ? [String:AnyObject]() : attributesAtIndex(range.location, effectiveRange: &range)
+        return string.characters.count == 0 ? [String:Any]() : attributes(at: range.location, effectiveRange: &range)
     }
 }

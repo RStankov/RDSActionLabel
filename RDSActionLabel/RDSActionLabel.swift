@@ -34,38 +34,38 @@ import UIKit
     }
 
     private func commonInit() {
-        let touchRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(RDSActionLabel.onTouch(_:)))
+        let touchRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onTouch(gesture:)))
         touchRecognizer.minimumPressDuration = 0.00001
         touchRecognizer.delegate = self
         addGestureRecognizer(touchRecognizer)
 
-        lineBreakMode = .ByWordWrapping
+        lineBreakMode = .byWordWrapping
 
-        userInteractionEnabled = true
+        isUserInteractionEnabled = true
     }
 
-    public func match(pattern: String, color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
+    public func match(_ pattern: String, color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
         matchers.append(RDSActionMatcher(pattern: pattern, color: color ?? textColor!, selectedColor: selectedColor, handle: handle));
         updateUI()
     }
 
-    public func matchUrl(color color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
+    public func matchUrl(color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
         match("(?i)https?://(?:www\\.)?\\S+(?:/|\\b)", color: color ?? textColor!, selectedColor: selectedColor, handle: handle)
     }
 
-    public func matchUsername(color color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
+    public func matchUsername(color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
         match("@\\w+", color: color ?? textColor!, selectedColor: selectedColor, handle: handle)
     }
 
-    public func matchHashtag(color color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
+    public func matchHashtag(color: UIColor? = nil, selectedColor: UIColor? = nil, handle: RDSActionHandler? = nil) {
         match("#[A-Z0-9_-]+", color: color ?? textColor!, selectedColor: selectedColor, handle: handle)
     }
 
-    public override func drawTextInRect(rect: CGRect) {
+    public override func drawText(in rect: CGRect) {
         textRenderer.drawTextInRect(rect)
     }
 
-    public override func sizeThatFits(size: CGSize) -> CGSize {
+    public override func sizeThatFits(_ size: CGSize) -> CGSize {
         return textRenderer.sizeThatFits(size)
     }
 
@@ -87,20 +87,28 @@ import UIKit
 
     func onTouch(gesture: UILongPressGestureRecognizer) {
         switch gesture.state {
-            case .Began, .Changed:
-                selectedText = textAtLocation(gesture.locationInView(self))
+        case .began, .changed:
+            selectedText = textAtLocation(location: gesture.location(in: self))
+            break
 
-            case .Cancelled, .Ended:
-                selectedText?.handle()
-                selectedText = nil
+        case .cancelled, .ended:
+            selectedText?.handle()
+            selectedText = nil
+            break
 
-            default: break
+        default:
+            break
         }
     }
 
-    private func textAtLocation(location: CGPoint) -> RDSActionText? {
+    func textAtLocation(location: CGPoint) -> RDSActionText? {
         guard let index = textRenderer.indexForPoint(location) else { return nil }
-        return matchedTexts.filter{ $0.inRange(index) }.first
+
+        for text in matchedTexts where text.inRange(index: index) {
+            return text
+        }
+
+        return nil
     }
 
     private func updateUI() {
@@ -110,41 +118,41 @@ import UIKit
 
         matchedTexts.removeAll()
 
-        textRenderer.attributedString = RDSActionTextRenderer.attributedStringFrom(self)
+        textRenderer.attributedString = RDSActionTextRenderer.attributedStringFrom(label: self)
 
         let string = textRenderer.attributedString.string as NSString
 
-        matchers.forEach { (matcher) in
-            matcher.match(string as String).forEach({ (range) in
-                let text = RDSActionText(range: range, string: string.substringWithRange(range), matcher: matcher)
+        for matcher in matchers {
+            for range in matcher.match(string as String) {
+                let text = RDSActionText(range: range, string: string.substring(with: range), matcher: matcher)
 
                 matchedTexts.append(text)
                 styleText(text)
-            })
+            }
         }
     }
 
-    private func styleText(text: RDSActionText?, isSelected: Bool = false) {
+    private func styleText(_ text: RDSActionText?, isSelected: Bool = false) {
         guard let text = text else { return }
 
-        textRenderer.setColor(text.color(isSelected), range: text.range)
+        textRenderer.setColor(text.color(isSelected: isSelected), range: text.range)
     }
 }
 
 extension RDSActionLabel: UIGestureRecognizerDelegate {
-    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 
-    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOfGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 
-    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailByGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 
-    public override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return textAtLocation(gestureRecognizer.locationInView(self)) != nil
+    public override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return textAtLocation(location: gestureRecognizer.location(in: self)) != nil
     }
 }

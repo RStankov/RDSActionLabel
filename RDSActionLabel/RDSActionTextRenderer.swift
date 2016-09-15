@@ -46,37 +46,37 @@ class RDSActionTextRenderer {
         textContainer.lineFragmentPadding = 0
     }
 
-    func drawTextInRect(rect: CGRect) {
+    func drawTextInRect(_ rect: CGRect) {
         textContainer.size = rect.size
 
         let range = NSRange(location: 0, length: textStorage.length)
 
-        layoutManager.drawBackgroundForGlyphRange(range, atPoint: rect.origin)
-        layoutManager.drawGlyphsForGlyphRange(range, atPoint: rect.origin)
+        layoutManager.drawBackground(forGlyphRange: range, at: rect.origin)
+        layoutManager.drawGlyphs(forGlyphRange: range, at: rect.origin)
     }
 
-    func setColor(color: UIColor, range: NSRange) {
+    func setColor(_ color: UIColor, range: NSRange) {
         textStorage.addAttributes([NSForegroundColorAttributeName:color], range: range)
     }
 
-    func sizeThatFits(size: CGSize) -> CGSize {
+    func sizeThatFits(_ size: CGSize) -> CGSize {
         let currentSize = textContainer.size
 
         defer { textContainer.size = currentSize }
 
         textContainer.size = size
-    
-        return layoutManager.usedRectForTextContainer(textContainer).size
+
+        return layoutManager.usedRect(for: textContainer).size
     }
 
-    func indexForPoint(location: CGPoint) -> Int? {
+    func indexForPoint(_ location: CGPoint) -> Int? {
         if textStorage.length == 0 {
             return nil
         }
 
-        let boundingRect = layoutManager.boundingRectForGlyphRange(NSRange(location: 0, length: textStorage.length), inTextContainer: textContainer)
+        let boundingRect = layoutManager.boundingRect(forGlyphRange: NSRange(location: 0, length: textStorage.length), in: textContainer)
         guard boundingRect.contains(location) else { return nil }
-
-        return layoutManager.glyphIndexForPoint(location, inTextContainer: textContainer)
+        
+        return layoutManager.glyphIndex(for: location, in: textContainer)
     }
 }

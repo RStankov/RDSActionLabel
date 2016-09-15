@@ -12,33 +12,33 @@ import XCTest
 
 class RDSActionMatcherTests: XCTestCase {
     func testMatcherSelectedColor() {
-        let matcher = RDSActionMatcher(pattern: "test", color: UIColor.blackColor())
-        let matcher2 = RDSActionMatcher(pattern: "test", color: UIColor.blackColor(), selectedColor: UIColor.redColor())
+        let matcher = RDSActionMatcher(pattern: "test", color: UIColor.black)
+        let matcher2 = RDSActionMatcher(pattern: "test", color: UIColor.black, selectedColor: UIColor.red)
 
         XCTAssertEqual(matcher.color, matcher.selectedColor)
-        XCTAssertEqual(matcher2.selectedColor, UIColor.redColor())
+        XCTAssertEqual(matcher2.selectedColor, UIColor.red)
     }
 
     func testTextInRange() {
-        let matcher = RDSActionMatcher(pattern: "test", color: UIColor.blackColor())
+        let matcher = RDSActionMatcher(pattern: "test", color: UIColor.black)
         let text = RDSActionText(range: NSMakeRange(0, 10), string: "test", matcher: matcher)
 
-        XCTAssert(text.inRange(5))
-        XCTAssertFalse(text.inRange(20))
+        XCTAssert(text.inRange(index: 5))
+        XCTAssertFalse(text.inRange(index: 20))
     }
 
     func testTextColor() {
-        let matcher = RDSActionMatcher(pattern: "test", color: UIColor.blackColor(), selectedColor: UIColor.redColor())
+        let matcher = RDSActionMatcher(pattern: "test", color: UIColor.black, selectedColor: UIColor.red)
         let text = RDSActionText(range: NSMakeRange(0, 10), string: "test", matcher: matcher)
 
         XCTAssertEqual(text.color(), matcher.color)
-        XCTAssertEqual(text.color(false), matcher.color)
-        XCTAssertEqual(text.color(true), matcher.selectedColor)
+        XCTAssertEqual(text.color(isSelected: false), matcher.color)
+        XCTAssertEqual(text.color(isSelected: true), matcher.selectedColor)
     }
 
     func testTextHandle() {
         var passedText = "not called"
-        let matcher = RDSActionMatcher(pattern: "test", color: UIColor.blackColor()) { passedText = $0 }
+        let matcher = RDSActionMatcher(pattern: "test", color: UIColor.black) { passedText = $0 }
         let text = RDSActionText(range: NSMakeRange(0, 10), string: "test", matcher: matcher)
 
         text.handle()
@@ -47,38 +47,60 @@ class RDSActionMatcherTests: XCTestCase {
     }
 
     func testmatchWithPattern() {
-        let matcher = RDSActionMatcher(pattern: "[a-z]+", color: UIColor.blackColor())
+        let matcher = RDSActionMatcher(pattern: "[a-z]+", color: UIColor.black)
 
+        let result = matcher.match(" test ")
 
-        XCTAssertEqual(matcher.match(" test "), [NSMakeRange(1, 4)]);
+        let expectedRange = NSMakeRange(1, 4)
+
+        XCTAssertEqual(result.count, 1)
+        XCTAssertEqual(result.first!.length, expectedRange.length)
+        XCTAssertEqual(result.first!.location, expectedRange.location)
     }
 
     func testmatchWithMultiplematch() {
-        let matcher = RDSActionMatcher(pattern: "word", color: UIColor.blackColor())
+        let matcher = RDSActionMatcher(pattern: "word", color: UIColor.black)
 
+        let result = matcher.match("word and word")
 
-        XCTAssertEqual(matcher.match("word and word"), [NSMakeRange(0, 4), NSMakeRange(9, 4)]);
+        let firstRange = NSMakeRange(0, 4)
+
+        let secondRange = NSMakeRange(9, 4)
+
+        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result.first!.length, firstRange.length)
+        XCTAssertEqual(result.first!.location, firstRange.location)
+        XCTAssertEqual(result.last!.length, secondRange.length)
+        XCTAssertEqual(result.last!.location, secondRange.location)
     }
 
     func testmatchWithMultilineString() {
-        let matcher = RDSActionMatcher(pattern: "test", color: UIColor.blackColor())
+        let matcher = RDSActionMatcher(pattern: "test", color: UIColor.black)
 
+        let result = matcher.match("\n\n\n test")
 
-        XCTAssertEqual(matcher.match("\n\n\n test"), [NSMakeRange(4, 4)]);
+        let expectedRange = NSMakeRange(4, 4)
+
+        XCTAssertEqual(result.count, 1)
+        XCTAssertEqual(result.first!.length, expectedRange.length)
+        XCTAssertEqual(result.first!.location, expectedRange.location)
     }
 
     func testmatchWithNoResult() {
-        let matcher = RDSActionMatcher(pattern: "[0-9]+", color: UIColor.blackColor())
+        let matcher = RDSActionMatcher(pattern: "[0-9]+", color: UIColor.black)
 
-
-        XCTAssertEqual(matcher.match("test"), []);
+        XCTAssertTrue(matcher.match("test").isEmpty)
     }
 
     func testmatchWithUrlMatcher() {
-        let matcher = RDSActionMatcher(pattern: "(?i)https?://(?:www\\.)?\\S+(?:/|\\b)", color: UIColor.blackColor())
+        let matcher = RDSActionMatcher(pattern: "(?i)https?://(?:www\\.)?\\S+(?:/|\\b)", color: UIColor.black)
 
+        let result = matcher.match(" http://example.com ")
 
-        XCTAssertEqual(matcher.match(" http://example.com "), [NSMakeRange(1, 18)]);
+        let expectedRange = NSMakeRange(1, 18)
 
+        XCTAssertEqual(result.count, 1)
+        XCTAssertEqual(result.first!.length, expectedRange.length)
+        XCTAssertEqual(result.first!.location, expectedRange.location)
     }
 }

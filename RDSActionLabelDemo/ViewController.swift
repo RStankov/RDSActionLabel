@@ -8,42 +8,52 @@
 
 import UIKit
 
-
 import RDSActionLabel
 
 class ViewController: UIViewController {
 
-    private let label = RDSActionLabel()
+    fileprivate lazy var label:RDSActionLabel = RDSActionLabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         label.text = "Example comment addresed to @username about http://example.com #hash-1 #hash-2 \n\n custom text \n\n tap recordings: \n"
-        label.textColor = UIColor.grayColor()
-        label.font = UIFont.boldSystemFontOfSize(12)
+        label.textColor = UIColor.gray
+        label.font = UIFont.boldSystemFont(ofSize: 12)
 
-        let hashtagColor = UIColor.redColor()
-        let mentionColor = UIColor.magentaColor()
-        let URLColor = UIColor.blueColor()
-        let selectedColor = UIColor.purpleColor()
+        let hashtagColor = UIColor.red
+        let mentionColor = UIColor.magenta
+        let URLColor = UIColor.blue
+        let selectedColor = UIColor.purple
 
-        label.match("custom text", handle: { self.alert("Custom", message: $0) })
-        label.matchUsername(color: mentionColor, selectedColor: selectedColor, handle: { self.alert("Mention", message: $0) })
-        label.matchHashtag(color: hashtagColor, selectedColor: selectedColor, handle: { self.alert("Hashtag", message: $0) })
-        label.matchUrl(color: URLColor, selectedColor: selectedColor, handle: { self.alert("Url", message: $0) })
+        label.match("custom text") { (match) in
+            self.alert("Custom", match)
+        }
+
+        label.matchUsername(color: mentionColor, selectedColor: mentionColor) { (match) in
+            self.alert("Mention", match)
+        }
+
+        label.matchHashtag(color: hashtagColor, selectedColor: selectedColor) { (match) in
+            self.alert("Hashtag", match)
+        }
+
+        label.matchUrl(color: URLColor, selectedColor: selectedColor) { (match) in
+            self.alert("URL", match)
+        }
 
         label.frame = CGRect(x: 40, y: 40, width: view.frame.width - 80, height: view.frame.height - 80)
 
         view.addSubview(label)
     }
 
-    func alert(title: String, message: String) {
+    func alert(_ title: String, _ message: String) {
         label.text = "\(label.text!) \n \"\(message)\" was tapped"
 
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
 
-        alert.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
 
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 }

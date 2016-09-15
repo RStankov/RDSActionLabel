@@ -11,7 +11,7 @@ import XCTest
 @testable import RDSActionLabel
 
 class RDSActionTextTests: XCTestCase {
-    private lazy var matcher = RDSActionMatcher(pattern: "test", color: UIColor.blackColor(), selectedColor: UIColor.redColor())
+    private lazy var matcher: RDSActionMatcher = RDSActionMatcher(pattern: "test", color: UIColor.black, selectedColor: UIColor.red)
 
     func testEquality() {
         let text = RDSActionText(range: NSMakeRange(0, 10), string: "test", matcher: matcher)
@@ -25,21 +25,21 @@ class RDSActionTextTests: XCTestCase {
     func testTextInRange() {
         let text = RDSActionText(range: NSMakeRange(0, 10), string: "test", matcher: matcher)
 
-        XCTAssert(text.inRange(5))
-        XCTAssertFalse(text.inRange(20))
+        XCTAssert(text.inRange(index: 5))
+        XCTAssertFalse(text.inRange(index: 20))
     }
 
     func testTextColor() {
         let text = RDSActionText(range: NSMakeRange(0, 10), string: "test", matcher: matcher)
 
         XCTAssertEqual(text.color(), matcher.color)
-        XCTAssertEqual(text.color(false), matcher.color)
-        XCTAssertEqual(text.color(true), matcher.selectedColor)
+        XCTAssertEqual(text.color(isSelected: false), matcher.color)
+        XCTAssertEqual(text.color(isSelected: true), matcher.selectedColor)
     }
 
     func testTextHandle() {
         var passedText = "not called"
-        let matcher = RDSActionMatcher(pattern: "test", color: UIColor.blackColor()) { passedText = $0 }
+        let matcher = RDSActionMatcher(pattern: "test", color: UIColor.black) { passedText = $0 }
         let text = RDSActionText(range: NSMakeRange(0, 10), string: "test", matcher: matcher)
 
         text.handle()

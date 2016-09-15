@@ -20,7 +20,7 @@ class RDSActionMatcher {
     let selectedColor: UIColor
 
     init(pattern : String, color : UIColor, selectedColor : UIColor? = nil, handle : RDSActionHandler? = nil ) {
-        self.regexp = try! NSRegularExpression(pattern: pattern, options: [.CaseInsensitive])
+        self.regexp = try! NSRegularExpression(pattern: pattern, options: [.caseInsensitive])
 
         self.color = color
         self.selectedColor = selectedColor ?? color
@@ -32,15 +32,15 @@ class RDSActionMatcher {
         }
     }
 
-    func match(string:String) -> [NSRange] {
+    func match(_ string:String) -> [NSRange] {
         var ranges = [NSRange]()
 
-        regexp.enumerateMatchesInString(string, options: [], range: NSRange(location: 0, length: string.characters.count)) { (result: NSTextCheckingResult?, _, _) in
+        regexp.enumerateMatches(in: string, options: [], range: NSRange(location: 0, length: string.characters.count)) { (result: NSTextCheckingResult?, _, _) in
             if let result = result {
                 ranges.append(result.range)
             }
         }
-
+        
         return ranges
     }
 }
