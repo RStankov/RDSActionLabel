@@ -4,4 +4,8 @@ xcode_project: RDSActionLabel.xcodeproj
 xcode_scheme: RDSActionLabel
 osx_image: xcode8
 
-script: xctool -workspace RDSActionLabel.xcworkspace -scheme RDSActionLabel clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+before_install:
+  - gem install scan
+
+script:
+  - scan --workspace "RDSActionLabel.xcworkspace" --scheme "RDSActionLabel" --device "iPhone 6s" --clean
