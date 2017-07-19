@@ -153,6 +153,6 @@ extension RDSActionLabel: UIGestureRecognizerDelegate {
     }
 
     public override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return textAtLocation(location: gestureRecognizer.location(in: self)) != nil
+        return true
     }
 }
