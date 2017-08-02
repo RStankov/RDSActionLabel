@@ -1,3 +1,9 @@
+# Important Notice
+
+I'm no longer actively maintaining this project. If you are interested supporting it - [ping me on twitter](https://twitter.com/rstankov).
+
+---
+
 [![Build Status](https://secure.travis-ci.org/RStankov/RDSActionLabel.png)](http://travis-ci.org/RStankov/RDSActionLabel)
 [![Pod Version](https://img.shields.io/cocoapods/v/RDSActionLabel.svg?style=flat)](https://cocoapods.org/pods/RDSActionLabel)
 
